@@ -1,8 +1,7 @@
 const routes = {
-    home: '/',
-    promotion: '/promotion',
-    ordernow: '/ordernow',
-  }
+  home: '/',
+  promotion: '/promotion',
+  ordernow: '/ordernow',
+}
   
-  export default routes;
-  
+export default routes;
