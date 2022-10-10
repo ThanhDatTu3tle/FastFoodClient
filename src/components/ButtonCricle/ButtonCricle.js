@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
 import classNames from "classnames/bind";
 
-import styles from './ButtonCricle.module.scss';
+import styles from './Buttoncricle.module.scss';
 
 const cx = classNames.bind(styles)
 
-function ButtonCricle({ to, href, children, onClick, disable = false, ...passProps }) {
+function Buttoncricle({ to, href, children, onClick, disable = false, ...passProps }) {
 
-  let Comp = 'ButtonCricle'
+  let Comp = 'buttoncricle'
 
   const props = {
     onClick,
@@ -42,4 +42,4 @@ function ButtonCricle({ to, href, children, onClick, disable = false, ...passPro
   )
 }
 
-export default ButtonCricle;
+export default Buttoncricle;
