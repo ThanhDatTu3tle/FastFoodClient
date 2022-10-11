@@ -4,7 +4,7 @@ import classNames from "classnames/bind";
 
 import styles from './Header.module.scss';
 import config from '../../../config';
-import Titles from './Titles';
+import Titles from './Titles/MenuTitles';
 import Options from './Options';
 
 const cx = classNames.bind(styles)
@@ -19,7 +19,9 @@ function Header() {
               LOGO
             </Link>
           </div>
-          <Titles />
+          <div className={cx('title')}>
+            <Titles />
+          </div>
         </div>
         <div className={cx('options')}>
           <Options />

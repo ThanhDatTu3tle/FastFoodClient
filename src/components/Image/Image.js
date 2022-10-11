@@ -1,4 +1,6 @@
-import { useState, forwardRef } from "react";
+import {
+  forwardRef
+} from "react";
 import styles from './Image.module.scss';
 import classNames from 'classnames';
 

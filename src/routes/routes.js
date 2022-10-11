@@ -4,9 +4,9 @@ import config from '../config/';
 import { MainLayout } from '../layouts/MainLayout';
 
 //Pages
-import Home from '../pages/Home';
-import Promotion from '../pages/Promotion';
-import OrderNow from '../pages/OrderNow';
+import Home from '../pages/Home/Home';
+import Promotion from '../pages/Promotion/Promotion';
+import OrderNow from '../pages/OrderNow/OrderNow';
 
 const publicRoutes = [
   { path: config.routes.home, component: Home, layout: MainLayout },
