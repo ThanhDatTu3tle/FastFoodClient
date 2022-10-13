@@ -18,37 +18,26 @@
     background-color: transparent;
     cursor: pointer;
 
-    // &.active {
-    //   color: #ff5b6a;
-    // }
+    &.active {
+      color: #ff5b6a;
+    }
 
-    &:hover .content {
+    &:hover {
       color: #ff5b6a;
     }
 
     &:hover .hover-bottom {
       background-color: #ff5b6a;
+
+      &.active {
+        color: #ff5b6a;
+      }
     }
 
     .hover-top {
       width: 100%;
       height: 3px;
       background-color: transparent;
-    }
-
-    .content {
-      display: flex;
-      align-items: center;
-      height: 100%;
-      color: #142f43;
-
-      &.active {
-        color: #ff5b6a;
-      }
-
-      &.active .hover-bottom {
-        background-color: #ff5b6a;
-      }
     }
 
     .hover-bottom {
