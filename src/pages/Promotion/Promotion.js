@@ -1,5 +1,6 @@
 import classNames from 'classnames/bind';
 import styles from './Promotion.module.scss';
+import Product from '../../components/Product/Product';
 
 const cx = classNames.bind(styles)
 
@@ -7,7 +8,16 @@ function Promotion() {
   return (
     <div className={cx('wrapper')}>
       <div className={cx('container')}>
-        <h2>Promotion page</h2>
+        <div className={cx('products')}>
+          <Product />
+          <Product />
+          <Product />
+        </div>
+        <div className={cx('products')}>
+          <Product />
+          <Product />
+          <Product />
+        </div>
       </div>
     </div>
   )
