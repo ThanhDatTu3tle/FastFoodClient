@@ -1,5 +1,6 @@
 import classNames from 'classnames/bind';
 import styles from './News.module.scss';
+import Button from '../Button/Button';
 
 const cx = classNames.bind(styles)
 
@@ -9,7 +10,9 @@ function News() {
             <div>Image</div>
             <div>Title</div>
             <div>Date</div>
-            <div>See more</div>
+            <Button outline>
+                See more
+            </Button>
         </div>
     )
 }

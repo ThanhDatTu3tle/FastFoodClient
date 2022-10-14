@@ -3,10 +3,10 @@ import styles from './Catalogue.module.scss';
 
 const cx = classNames.bind(styles)
 
-function Catalogue({ image, content, ...props }) {
+function Catalogue({ children, content, ...props }) {
     return (
         <div className={cx('wrapper')}>
-            <div className={cx('image')}>{image}</div>
+            {children}
             <div>{content}</div>
         </div>
     )
