@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames/bind';
 
 import styles from './Options.module.scss';
+import config from '../../../config';
 import ButtonCricle from '../../../components/ButtonCricle/ButtonCricle';
 import Image from '../../../components/Image/Image';
 
@@ -16,15 +17,18 @@ function Options() {
           src="https://www.lotteria.vn/grs-static/images/icon-pos-2.svg"
           alt="pos-icon"
           // fallback
-        />
+        >
+        </Image>
       </ButtonCricle>
-      <ButtonCricle>
+      <ButtonCricle to={config.routes.register}>
         <Image
           className={cx('acc-icon')}
           src="https://www.lotteria.vn/grs-static/images/icon-myaccount.svg"
           alt="acc-icon"
           // fallback
-        />
+        >
+          {/* <Link to={config.routes.promotion}></Link> */}
+        </Image>
       </ButtonCricle>
       <ButtonCricle>
         <Image
