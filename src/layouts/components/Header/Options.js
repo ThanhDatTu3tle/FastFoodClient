@@ -1,14 +1,24 @@
-import React from 'react';
+import { useState } from 'react';
 import classNames from 'classnames/bind';
+import Backdrop from '@mui/material/Backdrop';
 
 import styles from './Options.module.scss';
-import config from '../../../config';
 import ButtonCricle from '../../../components/ButtonCricle/ButtonCricle';
 import Image from '../../../components/Image/Image';
+import RegisterForm from '../../../pages/RegisterForm/RegisterForm';
 
 const cx = classNames.bind(styles);
 
 function Options() {
+
+  const [open, setOpen] = useState(false);
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleToggle = () => {
+    setOpen(!open);
+  };
+
   return (
     <div className={cx('wrapper')}>
       <ButtonCricle>
@@ -20,7 +30,14 @@ function Options() {
         >
         </Image>
       </ButtonCricle>
-      <ButtonCricle to={config.routes.register}>
+      <ButtonCricle onClick={handleToggle}>
+        <Backdrop
+          sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open={open}
+          onClick={handleClose}
+        >
+          <RegisterForm />
+        </Backdrop>
         <Image
           className={cx('acc-icon')}
           src="https://www.lotteria.vn/grs-static/images/icon-myaccount.svg"
