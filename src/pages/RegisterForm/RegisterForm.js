@@ -11,8 +11,7 @@ import classNames from 'classnames/bind';
 import { styled } from '@mui/material/styles';
 
 import styles from './RegisterForm.module.scss';
-// import fonts from './fonts';
-// import vendor from './vendor/jquery/jquery.min.js';
+import Image from '../../components/Image/Image';
 
 const cx = classNames.bind(styles)
 
@@ -65,112 +64,104 @@ function RegisterForm() {
         <div className={cx('wrapper')}>
 
             <div className={cx("container-main")}>
-                <div className={cx("sign-up")}>Sign Up</div>
-                <div className={cx("input-name")}>
-                    <FormControl sx={{ width: '50ch' }} variant="outlined">
-                        <InputLabel htmlFor="outlined-adornment-password">Full name</InputLabel>
-                        <OutlinedInput
-                            id="outlined-adornment-password"
-                            // type={values.showPassword ? 'text' : 'password'}
-                            value={values.name}
-                            onChange={handleChange('name')}
-                            endAdornment={
-                            <InputAdornment position="end">
-                                {/* <IconButton
-                                aria-label="toggle password visibility"
-                                onClick={handleClickShowPassword}
-                                onMouseDown={handleMouseDownPassword}
-                                edge="end"
-                                >
-                                {values.showPassword ? <VisibilityOff /> : <Visibility />}
-                                </IconButton> */}
-                            </InputAdornment>
-                            }
-                            label="Full name"
-                        />
-                    </FormControl>
-                </div>
-                <div className={cx("input-phonenumber")}>
-                    <FormControl sx={{ width: '50ch' }} variant="outlined">
-                        <InputLabel htmlFor="outlined-adornment-password">Phone number</InputLabel>
-                        <OutlinedInput
-                            id="outlined-adornment-password"
-                            // type={values.showPassword ? 'text' : 'password'}
-                            value={values.phone}
-                            onChange={handleChange('phone')}
-                            endAdornment={
-                            <InputAdornment position="end">
-                                {/* <IconButton
-                                aria-label="toggle password visibility"
-                                onClick={handleClickShowPassword}
-                                onMouseDown={handleMouseDownPassword}
-                                edge="end"
-                                >
-                                {values.showPassword ? <VisibilityOff /> : <Visibility />}
-                                </IconButton> */}
-                            </InputAdornment>
-                            }
-                            label="Phone number"
-                        />
-                    </FormControl>
-                </div>
-                <div className={cx("input-email")}>
-                    <FormControl sx={{  width: '50ch' }} variant="outlined">
-                        <InputLabel htmlFor="outlined-adornment-password">Email</InputLabel>
-                        <OutlinedInput
-                            id="outlined-adornment-password"
-                            // type={values.showPassword ? 'text' : 'password'}
-                            value={values.email}
-                            onChange={handleChange('email')}
-                            endAdornment={
-                            <InputAdornment position="end">
-                                {/* <IconButton
-                                aria-label="toggle password visibility"
-                                onClick={handleClickShowPassword}
-                                onMouseDown={handleMouseDownPassword}
-                                edge="end"
-                                >
-                                {values.showPassword ? <VisibilityOff /> : <Visibility />}
-                                </IconButton> */}
-                            </InputAdornment>
-                            }
-                            label="Email"
-                        />
-                    </FormControl>
+                <div className={cx('left-container')}>
+                    <div className={cx("sign-up")}>Sign Up</div>
+                    <div className={cx("input-name")}>
+                        <FormControl sx={{ width: '50ch' }} variant="outlined">
+                            <InputLabel sx={{ fontSize: '15px' }} htmlFor="outlined-adornment-name">Full name</InputLabel>
+                            <OutlinedInput
+                                id="outlined-adornment-name"
+                                sx={{ fontSize: '15px' }}
+                                // type={values.showPassword ? 'text' : 'password'}
+                                value={values.name}
+                                onChange={handleChange('name')}
+                                endAdornment={
+                                <InputAdornment position="end">
+
+                                </InputAdornment>
+                                }
+                                label="Full name"
+                            />
+                        </FormControl>
+                    </div>
+                    <div className={cx("input-phonenumber")}>
+                        <FormControl sx={{ width: '50ch' }} variant="outlined">
+                            <InputLabel sx={{ fontSize: '15px' }} htmlFor="outlined-adornment-phone">Phone number</InputLabel>
+                            <OutlinedInput
+                                id="outlined-adornment-phone"
+                                sx={{ fontSize: '15px' }}
+                                // type={values.showPassword ? 'text' : 'password'}
+                                value={values.phone}
+                                onChange={handleChange('phone')}
+                                endAdornment={
+                                <InputAdornment position="end">
+
+                                </InputAdornment>
+                                }
+                                label="Phone number"
+                            />
+                        </FormControl>
+                    </div>
+                    <div className={cx("input-email")}>
+                        <FormControl sx={{  width: '50ch' }} variant="outlined">
+                            <InputLabel sx={{ fontSize: '15px' }} htmlFor="outlined-adornment-email">Email</InputLabel>
+                            <OutlinedInput
+                                id="outlined-adornment-email"
+                                sx={{ fontSize: '15px' }}
+                                // type={values.showPassword ? 'text' : 'password'}
+                                value={values.email}
+                                onChange={handleChange('email')}
+                                endAdornment={
+                                <InputAdornment position="end">
+
+                                </InputAdornment>
+                                }
+                                label="Email"
+                            />
+                        </FormControl>
+                    </div>
+
+                    <div className={cx("input-password")}>
+                        <FormControl sx={{ width: '50ch' }} variant="outlined">
+                            <InputLabel sx={{ fontSize: '15px' }} htmlFor="outlined-adornment-password">Password</InputLabel>
+                            <OutlinedInput
+                                id="outlined-adornment-password"
+                                sx={{ fontSize: '15px' }}
+                                type={values.showPassword ? 'text' : 'password'}
+                                value={values.password}
+                                onChange={handleChange('password')}
+                                endAdornment={
+                                <InputAdornment position="end">
+                                    <IconButton
+                                    aria-label="toggle password visibility"
+                                    onClick={handleClickShowPassword}
+                                    onMouseDown={handleMouseDownPassword}
+                                    edge="end"
+                                    >
+                                    {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                                    </IconButton>
+                                </InputAdornment>
+                                }
+                                label="Password"
+                            />
+                        </FormControl>
+                    </div>
+
+                    
+
+                    <div className={cx("create-acc-btn")}>
+                        <ButtonCreate size='large' variant="contained">Create account</ButtonCreate>
+                    </div>
                 </div>
 
-                <div className={cx("input-password")}>
-                    <FormControl sx={{ width: '50ch' }} variant="outlined">
-                        <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
-                        <OutlinedInput
-                            id="outlined-adornment-password"
-                            type={values.showPassword ? 'text' : 'password'}
-                            value={values.password}
-                            onChange={handleChange('password')}
-                            endAdornment={
-                            <InputAdornment position="end">
-                                <IconButton
-                                aria-label="toggle password visibility"
-                                onClick={handleClickShowPassword}
-                                onMouseDown={handleMouseDownPassword}
-                                edge="end"
-                                >
-                                {values.showPassword ? <VisibilityOff /> : <Visibility />}
-                                </IconButton>
-                            </InputAdornment>
-                            }
-                            label="Password"
-                        />
-                    </FormControl>
+                <div className={cx('right-container')}>
+                    <Image src='https://images.unsplash.com/photo-1619221881739-40de2afeaa7d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'/>
                 </div>
 
                 
-
-                <div className={cx("create-acc-btn")}>
-                    <ButtonCreate size='large' variant="contained">Create account</ButtonCreate>
-                </div>
             </div>
 
+            
         </div>
     );
 }

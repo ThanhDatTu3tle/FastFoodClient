@@ -36,7 +36,7 @@ function List() {
                     alt="extra-dishes"
                 />
             </Catalogue>  
-            <Catalogue content={'drink'}>
+            <Catalogue content={'Drink'}>
                 <Image 
                     className={cx('chicken-fried')} 
                     src="https://www.lotteria.vn/media/catalog/tmp/category/Promotion-10_2.jpg"
