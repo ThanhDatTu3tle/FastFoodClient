@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState } from 'react';
 import FormControl from '@mui/material/FormControl';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
@@ -7,6 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Button from '@mui/material/Button';
+import CloseIcon from '@mui/icons-material/Close';
 import classNames from 'classnames/bind';
 import { styled } from '@mui/material/styles';
 
@@ -15,8 +16,11 @@ import Image from '../../components/Image/Image';
 
 const cx = classNames.bind(styles)
 
-function RegisterForm() {
-    const [values, setValues] = React.useState({
+function RegisterForm({ onClick, ...props }) {
+
+    localStorage.setItem('signInClose', 'false')
+
+    const [values, setValues] = useState({
         amount: '',
         password: '',
         weight: '',
@@ -25,19 +29,27 @@ function RegisterForm() {
     });
     
     const handleChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
+        setValues({ ...values, [prop]: event.target.value });
     };
 
     const handleClickShowPassword = () => {
-    setValues({
-        ...values,
-        showPassword: !values.showPassword,
-    });
+        setValues({
+            ...values,
+            showPassword: !values.showPassword,
+        });
     };
 
     const handleMouseDownPassword = (event) => {
-    event.preventDefault();
+        event.preventDefault();
     };
+
+    const [isClosed, setIsClosed] = useState(true)
+
+    console.log('isClosed: ', isClosed)
+
+    const handleCloseBackdrop = () => {
+        setIsClosed(true)
+    }
 
     const ButtonCreate = styled(Button)({
         fontSize: 16,
@@ -154,11 +166,12 @@ function RegisterForm() {
                     </div>
                 </div>
 
+                <CloseIcon onClick={handleCloseBackdrop} className={cx('icon-close')}/>
+                                
                 <div className={cx('right-container')}>
-                    <Image src='https://images.unsplash.com/photo-1619221881739-40de2afeaa7d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'/>
+                    
+                    <Image className={cx('image')} src='https://images.unsplash.com/photo-1619221881739-40de2afeaa7d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80' />
                 </div>
-
-                
             </div>
 
             

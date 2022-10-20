@@ -12,10 +12,14 @@ const cx = classNames.bind(styles);
 function Options() {
 
   const [open, setOpen] = useState(false);
-  // const handleClose = () => {
-  //   setOpen(false);
-  // };
+  console.log('Open: ', open)
+  // console.log('SetOpen: ', setOpen)
+  const handleClose = () => {
+
+    setOpen(false);
+  };
   const handleToggle = () => {
+    // setOpen(!open);
     setOpen(true);
   };
 
@@ -34,7 +38,7 @@ function Options() {
         <Backdrop
           sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
           open={open}
-          // onClick={handleClose}
+          onClick={handleClose}
         >
           <RegisterForm />
         </Backdrop>
