@@ -5,22 +5,19 @@ import Backdrop from '@mui/material/Backdrop';
 import styles from './Options.module.scss';
 import ButtonCricle from '../../../components/ButtonCricle/ButtonCricle';
 import Image from '../../../components/Image/Image';
-import RegisterForm from '../../../pages/RegisterForm/RegisterForm';
+import LoginForm from '../LoginForm/LoginForm';
 
 const cx = classNames.bind(styles);
 
 function Options() {
 
-  const [open, setOpen] = useState(false);
-  console.log('Open: ', open)
-  // console.log('SetOpen: ', setOpen)
-  const handleClose = () => {
+  const [open, setOpen] = useState(false)
 
-    setOpen(false);
-  };
   const handleToggle = () => {
-    // setOpen(!open);
-    setOpen(true);
+
+    if (open === false) {
+      setOpen(!open);
+    } 
   };
 
   return (
@@ -38,9 +35,10 @@ function Options() {
         <Backdrop
           sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
           open={open}
-          onClick={handleClose}
         >
-          <RegisterForm />
+          <LoginForm onClick={() => {
+            setOpen(false)
+          }} />
         </Backdrop>
         <Image
           className={cx('acc-icon')}
