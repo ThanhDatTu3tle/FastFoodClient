@@ -133,7 +133,12 @@ function RegisterForm({ to, onClick, children, ...props }) {
 
                     <div className={cx("create-acc-btn")}>
                         <Button primary>Create an account</Button>
+                        <br />
+                        <span>
+                        © Tu3tle · Privacy & terms
+                        </span>
                     </div>
+
                 </div>
             </div>
 

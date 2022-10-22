@@ -15,7 +15,7 @@ const publicRoutes = [
   { path: config.routes.home, component: Home, layout: MainLayout },
   { path: config.routes.promotion, component: Promotion, layout: MainLayout },
   { path: config.routes.ordernow, component: OrderNow, layout: MainLayout },
-  { path: config.routes.register, component: RegisterForm, layout: MainLayout },
+  { path: config.routes.register, component: RegisterForm, layout: null },
 ]
 
 const privateRoutes = []
