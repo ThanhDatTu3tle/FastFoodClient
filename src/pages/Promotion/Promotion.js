@@ -18,16 +18,21 @@ function Promotion() {
           });
   }, [])
 
+  const productsArr_1 = products.slice(0, 3)
+  // console.log('1: ', productsArr_1)
+  const productsArr_2 = products.slice(3, 6)
+  // console.log('2: ', productsArr_2)
+
   return (
     <div className={cx('wrapper')}>
       <div className={cx('container')}>
         <div className={cx('products')}>
-          {products.map((data) => (
+          {productsArr_1.map((data) => (
             <Product key={data.maMonAn} data={data}/>
           ))} 
         </div>
         <div className={cx('products')}>
-          {products.map((data) => (
+          {productsArr_2.map((data) => (
             <Product key={data.maMonAn} data={data}/>
           ))} 
         </div>
