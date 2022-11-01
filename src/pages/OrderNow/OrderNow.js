@@ -24,6 +24,8 @@ function OrderNow() {
   // console.log('1: ', productsArr_1)
   const productsArr_2 = products.slice(3, 6)
   // console.log('2: ', productsArr_2)
+  const productsArr_3 = products.slice(6, 9)
+  // console.log('3: ', productsArr_3)
 
   return (
     <div className={cx('wrapper')}>
@@ -38,6 +40,11 @@ function OrderNow() {
         </div>
         <div className={cx('products')}>
           {productsArr_2.map((data) => (
+            <Product key={data.maMonAn} data={data}/>
+          ))} 
+        </div>
+        <div className={cx('products')}>
+          {productsArr_3.map((data) => (
             <Product key={data.maMonAn} data={data}/>
           ))} 
         </div>

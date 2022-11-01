@@ -7,18 +7,6 @@ import Image from '../Image/Image';
 const cx = classNames.bind(styles)
 
 function Product({ data }) {
-
-    // const [products, setProducts] = useState()
-
-    // useEffect(() => {
-
-    //     fetch('http://localhost:3001/products')
-    //         .then((response) => response.json())
-    //         .then((data) => {
-    //             setProducts(data)
-    //             console.log(data)
-    //         });
-    // }, [])
     
     return (
         <div className={cx('wrapper')}>
