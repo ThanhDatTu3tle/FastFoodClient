@@ -22,7 +22,15 @@ function Options() {
 
   return (
     <div className={cx('wrapper')}>
-      <ButtonCricle>
+      <ButtonCricle onClick={handleToggle}> 
+        <Backdrop
+          sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open={open}
+        >
+          <LoginForm onClick={() => {
+            setOpen(false)
+          }} />
+        </Backdrop>
         <Image
           className={cx('pos-icon')}
           src="https://www.lotteria.vn/grs-static/images/icon-pos-2.svg"
@@ -49,7 +57,15 @@ function Options() {
           {/* <Link to={config.routes.promotion}></Link> */}
         </Image>
       </ButtonCricle>
-      <ButtonCricle>
+      <ButtonCricle onClick={handleToggle}>
+        <Backdrop
+          sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open={open}
+        >
+          <LoginForm onClick={() => {
+            setOpen(false)
+          }} />
+        </Backdrop>
         <Image
           className={cx('notification-icon')}
           src="https://www.lotteria.vn/grs-static/images/icon-notification.svg"
@@ -57,7 +73,15 @@ function Options() {
           // fallback
         />
       </ButtonCricle>
-      <ButtonCricle>
+      <ButtonCricle onClick={handleToggle}>
+        <Backdrop
+          sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open={open}
+        >
+          <LoginForm onClick={() => {
+            setOpen(false)
+          }} />
+        </Backdrop>
         <Image
           className={cx('cart-icon')}
           src="https://www.lotteria.vn/grs-static/images/icon-cart.svg"
