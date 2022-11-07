@@ -1,18 +1,18 @@
 import { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
-import styles from './OrderNow.module.scss';
-import Product from '../../components/Product/Product';
-import List from '../../components/List/List';
+import styles from './Hamburger.module.scss';
+import Product from '../../../components/Product/Product';
+import List from '../../../components/List/List';
 
 const cx = classNames.bind(styles)
 
-function OrderNow() {
+function Hamburger() {
 
   const [products, setProducts] = useState([])
   // const [category, setCategory] = useState()
 
   useEffect(() => {
-      fetch('http://localhost:3001/products')
+      fetch('http://localhost:3001/products/MDM02')
           .then((response) => response.json())
           .then((data) => {
               setProducts(data)
@@ -33,6 +33,7 @@ function OrderNow() {
         <div className={cx('list')}>
           <List />
         </div>
+        <h1>Burger</h1>
         <div className={cx('products')}>
           {productsArr_1.map((data) => (
             <Product key={data.maMonAn} data={data}/>
@@ -51,6 +52,7 @@ function OrderNow() {
       </div>
     </div>
   )
+  
 }
 
-export default OrderNow;
+export default Hamburger;

@@ -1,17 +1,25 @@
 .wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100px;
-    height: 120px;
-    margin: 10px 10px;
-    cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 120px;
+  margin: 10px 10px;
+  cursor: pointer;
 
-    .image {
-        display: flex;
-        width: 100%;
-        height: 100px;
-        background-color: #ff9ea2;
+  .image {
+    display: flex;
+    width: 100%;
+    height: 100px;
+    background-color: #ff9ea2;
+  }
+
+  .active {
+    &:hover {
+      border-color: #ff9ea2;
+      border-width: 5px;
+      font-weight: 700;
     }
+  }
 }

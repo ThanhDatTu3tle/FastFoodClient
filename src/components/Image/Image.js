@@ -1,11 +1,12 @@
 import {
   forwardRef
 } from "react";
+// import { Link } from "react-router-dom";
 import styles from './Image.module.scss';
 import classNames from 'classnames';
 
 // fallback: customFallback = images.icon_profile,
-const Image = forwardRef(({ src, alt, className, ...props }, ref) => {
+const Image = forwardRef(({ children, src, alt, href, className, to, ...props }, ref) => {
 
   // const [fallback, setFallback] = useState('')
 
@@ -20,9 +21,12 @@ const Image = forwardRef(({ src, alt, className, ...props }, ref) => {
       // src={fallback || src} 
       src={src} 
       alt={alt} 
+      href={href}
+      to={to}
       {...props} 
       // onError={handleError} 
-    />
+    >
+    </img>
   )
 })
 
