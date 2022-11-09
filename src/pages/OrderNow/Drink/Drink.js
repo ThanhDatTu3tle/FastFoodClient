@@ -12,7 +12,7 @@ function Drink() {
   // const [category, setCategory] = useState()
 
   useEffect(() => {
-      fetch('http://localhost:3001/products/MDM03')
+      fetch('http://localhost:3001/products/MDM05')
           .then((response) => response.json())
           .then((data) => {
               setProducts(data)

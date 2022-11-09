@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import FormControl from '@mui/material/FormControl';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -19,6 +19,8 @@ import Button from '../../../components/Button/Button';
 const cx = classNames.bind(styles)
 
 function LoginForm({ to, onClick, children, ...props }) {
+
+    const phoneNumberRef = useRef()
 
     const [values, setValues] = useState({
         amount: '',
@@ -59,6 +61,7 @@ function LoginForm({ to, onClick, children, ...props }) {
                                 value={values.phone}
                                 onChange={handleChange('phone')}
                                 label="Phone number"
+                                ref={phoneNumberRef}
                             />
                         </FormControl>
                     </div>
