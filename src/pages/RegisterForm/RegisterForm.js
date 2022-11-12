@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 import FormControl from '@mui/material/FormControl';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
@@ -9,6 +9,9 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import classNames from 'classnames/bind';
+import axios from 'axios';
+import Swal from 'sweetalert2';
+import withReactContent from "sweetalert2-react-content";
 
 import styles from './RegisterForm.module.scss';
 import Button from '../../components/Button/Button';
@@ -17,53 +20,24 @@ const cx = classNames.bind(styles)
 
 function RegisterForm({ to, onClick, children, ...props }) {
 
-    // Input fullName
-    const [inputFullNameValue, setFullNameInputValue] = useState("");
-    const fullNameRef = useRef()
-    useEffect(() => {
-        fullNameRef.current = inputFullNameValue;
+    const [data, setData] = useState({
+        email: '',
+        hoTen: '',
+        soDienThoai: '',
+        matKhau: '',
+    })
 
-    }, [inputFullNameValue])
-    const handleChangeName = (prop) => (event) => {
-        setValues({ ...values, [prop]: event.target.value });
-        setFullNameInputValue(event.target.value);
-    };
+    const handleSubmit = (e) => {
+        const newData = {...data}
+        newData[e.target.id] = e.target.value
+        setData(newData)
 
-    // Input phoneNumber
-    const [inputPhoneNumberValue, setPhoneNumberInputValue] = useState("");
-    const phoneNumberRef = useRef()
-    useEffect(() => {
-        phoneNumberRef.current = inputPhoneNumberValue;
-
-    }, [inputPhoneNumberValue])
-    const handleChangePhone = (prop) => (event) => {
-        setValues({ ...values, [prop]: event.target.value });
-        setPhoneNumberInputValue(event.target.value);
-    };
-
-    // Input email
-    const [inputEmailValue, setEmailInputValue] = useState("");
-    const emailRef = useRef()
-    useEffect(() => {
-        emailRef.current = inputEmailValue;
-
-    }, [inputEmailValue])
-    const handleChangeEmail = (prop) => (event) => {
-        setValues({ ...values, [prop]: event.target.value });
-        setEmailInputValue(event.target.value);
-    };
-
-    // Input password
-    const [inputPasswordValue, setPasswordInputValue] = useState("");
-    const passwordRef = useRef()
-    useEffect(() => {
-        passwordRef.current = inputPasswordValue;
-
-    }, [inputPasswordValue])
-    const handleChangePassword = (prop) => (event) => {
-        setValues({ ...values, [prop]: event.target.value });
-        setPasswordInputValue(event.target.value);
-    };
+        localStorage.setItem('email: ', newData.email.toString())
+        localStorage.setItem('hoTen: ', newData.hoTen.toString())
+        localStorage.setItem('soDienThoai: ', newData.soDienThoai.toString())
+        localStorage.setItem('matKhau: ', newData.matKhau.toString())
+        // console.log(newData.email)
+    }
 
     const [values, setValues] = useState({
         amount: '',
@@ -89,23 +63,39 @@ function RegisterForm({ to, onClick, children, ...props }) {
         label: 'Ngu'
     };
 
-    const handleSubmit = () => {
-        const registerInfo = {
-            "hoTen": inputFullNameValue.toString(),
-            "soDienThoai": inputPhoneNumberValue.toString(),
-            "email": inputEmailValue.toString(),
-            "matKhau": inputPasswordValue.toString(),
-        }
-        const request = new XMLHttpRequest();
-        request.open("POST", "http://localhost:3001/customer-test")
+    const MySwal = withReactContent(Swal);
 
-        // const registerForm = document.getElementById('registerForm');
-        // const formData = new FormData(registerInfo);
 
-        request.send(registerInfo);
+    const handleSubmitButton = (e) => {
 
-        console.log(registerInfo)
+        axios.post('http://localhost:3001/customer', {
+            email: data.email,
+            hoTen: data.hoTen,
+            soDienThoai: data.soDienThoai,
+            matKhau: data.matKhau,
+        })
+        .then(async function (response) {
+            console.log(response);
+            if (response.status === 201) {
+                await MySwal.fire({
+                    title: "Đăng nhập thành công",
+                    icon: "success",
+                    didOpen: () => {
+                        MySwal.showLoading();
+                    },
+                    timer: 1000,
+                });
+                window.location.href = "/home";
+            }
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+
+        // console.log('Ngu')
     }
+
+    
 
     return (
         <div className={cx('wrapper')}>
@@ -114,17 +104,31 @@ function RegisterForm({ to, onClick, children, ...props }) {
                 <div className={cx('left-container')}>
                     <div className={cx("sign-up")}>Create your account</div>
                     <form id='registerForm'>
+                        <div className={cx("input-email")}>
+                            <FormControl sx={{  width: '50ch' }} variant="outlined">
+                                <InputLabel sx={{ fontSize: '15px' }} htmlFor="outlined-adornment-email">Email</InputLabel>
+                                <OutlinedInput
+                                    id="email"
+                                    sx={{ fontSize: '15px' }}
+                                    // type={values.showPassword ? 'text' : 'password'}
+                                    value={data.email}
+                                    onChange={(e) => handleSubmit(e)}
+                                    label="Email"
+                                    // ref={emailRef}
+                                />
+                            </FormControl>
+                        </div>
                         <div className={cx("input-name")}>
                             <FormControl sx={{ width: '50ch' }} variant="outlined" id="full-name">
                                 <InputLabel sx={{ fontSize: '15px' }} htmlFor="outlined-adornment-name">Full name</InputLabel>
                                 <OutlinedInput
-                                    id="full-name"
+                                    id="hoTen"
                                     sx={{ fontSize: '15px' }}
                                     // type={values.showPassword ? 'text' : 'password'}
-                                    value={inputFullNameValue}
-                                    onChange={handleChangeName('name')}
+                                    value={data.hoTen}
+                                    onChange={(e) => handleSubmit(e)}
                                     label="Full name"
-                                    ref={fullNameRef}
+                                    // ref={fullNameRef}
                                 />
                             </FormControl>
                         </div>
@@ -132,27 +136,13 @@ function RegisterForm({ to, onClick, children, ...props }) {
                             <FormControl sx={{ width: '50ch' }} variant="outlined">
                                 <InputLabel sx={{ fontSize: '15px' }} htmlFor="outlined-adornment-phone">Phone number</InputLabel>
                                 <OutlinedInput
-                                    id="outlined-adornment-phone"
+                                    id="soDienThoai"
                                     sx={{ fontSize: '15px' }}
                                     // type={values.showPassword ? 'text' : 'password'}
-                                    value={inputPhoneNumberValue}
-                                    onChange={handleChangePhone('phone')}
+                                    value={data.soDienThoai}
+                                    onChange={(e) => handleSubmit(e)}
                                     label="Phone number"
-                                    ref={phoneNumberRef}
-                                />
-                            </FormControl>
-                        </div>
-                        <div className={cx("input-email")}>
-                            <FormControl sx={{  width: '50ch' }} variant="outlined">
-                                <InputLabel sx={{ fontSize: '15px' }} htmlFor="outlined-adornment-email">Email</InputLabel>
-                                <OutlinedInput
-                                    id="outlined-adornment-email"
-                                    sx={{ fontSize: '15px' }}
-                                    // type={values.showPassword ? 'text' : 'password'}
-                                    value={inputEmailValue}
-                                    onChange={handleChangeEmail('email')}
-                                    label="Email"
-                                    ref={emailRef}
+                                    // ref={phoneNumberRef}
                                 />
                             </FormControl>
                         </div>
@@ -160,11 +150,11 @@ function RegisterForm({ to, onClick, children, ...props }) {
                             <FormControl sx={{ width: '50ch' }} variant="outlined">
                                 <InputLabel sx={{ fontSize: '15px' }} htmlFor="outlined-adornment-password">Password</InputLabel>
                                 <OutlinedInput
-                                    id="outlined-adornment-password"
+                                    id="matKhau"
                                     sx={{ fontSize: '15px' }}
                                     type={values.showPassword ? 'text' : 'password'}
-                                    value={inputPasswordValue}
-                                    onChange={handleChangePassword('password')}
+                                    value={data.matKhau}
+                                    onChange={(e) => handleSubmit(e)}
                                     endAdornment={
                                         <InputAdornment position="end">
                                             <IconButton
@@ -178,12 +168,13 @@ function RegisterForm({ to, onClick, children, ...props }) {
                                         </InputAdornment>
                                     }
                                     label="Password"
-                                    ref={passwordRef}
+                                    // ref={passwordRef}
                                 />
                             </FormControl>
                         </div>
+                        
                     </form>
-                    
+                
                     
 
                     <div className={cx("checkbox")}>
@@ -201,7 +192,7 @@ function RegisterForm({ to, onClick, children, ...props }) {
                     </div>
 
                     <div className={cx("create-acc-btn")}>
-                        <Button primary onClick={handleSubmit}>Create an account</Button>
+                        <Button primary onClick={(e) => handleSubmitButton(e)}>Create an account</Button>
                         <br />
                         <span>
                         © Tu3tle · Privacy & terms
