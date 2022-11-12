@@ -31,12 +31,10 @@ function RegisterForm({ to, onClick, children, ...props }) {
         const newData = {...data}
         newData[e.target.id] = e.target.value
         setData(newData)
-
-        localStorage.setItem('email: ', newData.email.toString())
-        localStorage.setItem('hoTen: ', newData.hoTen.toString())
-        localStorage.setItem('soDienThoai: ', newData.soDienThoai.toString())
-        localStorage.setItem('matKhau: ', newData.matKhau.toString())
-        // console.log(newData.email)
+        localStorage.setItem('email', newData.email.toString())
+        localStorage.setItem('hoTen', newData.hoTen.toString())
+        localStorage.setItem('soDienThoai', newData.soDienThoai.toString())
+        localStorage.setItem('matKhau', newData.matKhau.toString())
     }
 
     const [values, setValues] = useState({
@@ -65,7 +63,6 @@ function RegisterForm({ to, onClick, children, ...props }) {
 
     const MySwal = withReactContent(Swal);
 
-
     const handleSubmitButton = (e) => {
 
         axios.post('http://localhost:3001/customer', {
@@ -91,11 +88,7 @@ function RegisterForm({ to, onClick, children, ...props }) {
         .catch(function (error) {
             console.log(error);
         });
-
-        // console.log('Ngu')
     }
-
-    
 
     return (
         <div className={cx('wrapper')}>
@@ -110,11 +103,9 @@ function RegisterForm({ to, onClick, children, ...props }) {
                                 <OutlinedInput
                                     id="email"
                                     sx={{ fontSize: '15px' }}
-                                    // type={values.showPassword ? 'text' : 'password'}
                                     value={data.email}
                                     onChange={(e) => handleSubmit(e)}
                                     label="Email"
-                                    // ref={emailRef}
                                 />
                             </FormControl>
                         </div>
@@ -124,11 +115,9 @@ function RegisterForm({ to, onClick, children, ...props }) {
                                 <OutlinedInput
                                     id="hoTen"
                                     sx={{ fontSize: '15px' }}
-                                    // type={values.showPassword ? 'text' : 'password'}
                                     value={data.hoTen}
                                     onChange={(e) => handleSubmit(e)}
                                     label="Full name"
-                                    // ref={fullNameRef}
                                 />
                             </FormControl>
                         </div>
@@ -138,11 +127,9 @@ function RegisterForm({ to, onClick, children, ...props }) {
                                 <OutlinedInput
                                     id="soDienThoai"
                                     sx={{ fontSize: '15px' }}
-                                    // type={values.showPassword ? 'text' : 'password'}
                                     value={data.soDienThoai}
                                     onChange={(e) => handleSubmit(e)}
                                     label="Phone number"
-                                    // ref={phoneNumberRef}
                                 />
                             </FormControl>
                         </div>
@@ -168,7 +155,6 @@ function RegisterForm({ to, onClick, children, ...props }) {
                                         </InputAdornment>
                                     }
                                     label="Password"
-                                    // ref={passwordRef}
                                 />
                             </FormControl>
                         </div>

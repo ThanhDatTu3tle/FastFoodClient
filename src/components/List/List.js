@@ -2,7 +2,6 @@ import classNames from 'classnames/bind';
 import styles from './List.module.scss';
 import Catalogue from '../Catalogue/Catalogue';
 import Image from '../Image/Image';
-import { Link } from 'react-router-dom';
 import config from '../../config';
 
 const cx = classNames.bind(styles)

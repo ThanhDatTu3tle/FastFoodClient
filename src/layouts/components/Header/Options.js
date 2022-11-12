@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import classNames from 'classnames/bind';
 import Backdrop from '@mui/material/Backdrop';
+// import { createPopper } from '@popperjs/core';
+import Tippy from '@tippyjs/react';
+import tippy from 'tippy.js';
+import 'tippy.js/dist/tippy.css';
 
 import styles from './Options.module.scss';
 import ButtonCricle from '../../../components/ButtonCricle/ButtonCricle';
@@ -19,26 +23,50 @@ function Options() {
       setOpen(!open);
     } 
   };
+  
+  const infoUser = localStorage.getItem('email');
+  // const posIcon = document.querySelector('#posIcon');
+  // const popperInfoUser = document.querySelector('#popper');
+
+  // tippy('#posIcon',{
+  //   position:'bottom',
+  //   animation:'scale',
+  //   arrow:'true',
+  //   trigger:'click'
+  // });
 
   return (
     <div className={cx('wrapper')}>
-      <ButtonCricle onClick={handleToggle}> 
-        <Backdrop
-          sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-          open={open}
-        >
-          <LoginForm onClick={() => {
-            setOpen(false)
-          }} />
-        </Backdrop>
-        <Image
-          className={cx('pos-icon')}
-          src="https://www.lotteria.vn/grs-static/images/icon-pos-2.svg"
-          alt="pos-icon"
-          // fallback
-        >
-        </Image>
+      <ButtonCricle onClick={handleToggle}>
+        {infoUser !== null
+          ? (
+            <>
+              <Tippy content='Map'>
+                  <Image
+                    className={cx('pos-icon')}
+                    src="https://www.lotteria.vn/grs-static/images/icon-pos-2.svg"
+                    alt="pos-icon"
+                    // fallback
+                  >
+                  </Image>
+              </Tippy>
+            </>
+          )
+          : (
+            <>
+              <Backdrop
+                sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                open={open}
+              >
+                <LoginForm onClick={() => {
+                  setOpen(false)
+                }} />
+              </Backdrop>
+            </>
+          )
+        }
       </ButtonCricle>
+      
       <ButtonCricle onClick={handleToggle}>
         <Backdrop
           sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
@@ -54,7 +82,6 @@ function Options() {
           alt="acc-icon"
           // fallback
         >
-          {/* <Link to={config.routes.promotion}></Link> */}
         </Image>
       </ButtonCricle>
       <ButtonCricle onClick={handleToggle}>
