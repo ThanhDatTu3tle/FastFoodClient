@@ -3,17 +3,19 @@ import classNames from 'classnames/bind';
 import Backdrop from '@mui/material/Backdrop';
 // import { createPopper } from '@popperjs/core';
 import Tippy from '@tippyjs/react';
-import tippy from 'tippy.js';
+// import tippy from 'tippy.js';
 import 'tippy.js/dist/tippy.css';
 
 import styles from './Options.module.scss';
 import ButtonCricle from '../../../components/ButtonCricle/ButtonCricle';
 import Image from '../../../components/Image/Image';
 import LoginForm from '../LoginForm/LoginForm';
+import { Wrapper as PopperWrapper } from '../../../components/Popper';
+import MoreInfoMenu from '../../../components/Popper/Menu/MoreInfoMenu';
 
 const cx = classNames.bind(styles);
 
-function Options() {
+function Options({ hideOnClick = false, items = [] }) {
 
   const [open, setOpen] = useState(false)
 
@@ -35,33 +37,70 @@ function Options() {
   //   trigger:'click'
   // });
 
+  const handleClick = () => {
+    console.log('Khang ngu')
+  }
+
   return (
     <div className={cx('wrapper')}>
-      <ButtonCricle onClick={handleToggle}>
+      <ButtonCricle>
         {infoUser !== null
           ? (
             <>
-              <Tippy content='Map'>
-                  <Image
-                    className={cx('pos-icon')}
-                    src="https://www.lotteria.vn/grs-static/images/icon-pos-2.svg"
-                    alt="pos-icon"
-                    // fallback
-                  >
-                  </Image>
+              <Tippy 
+                interactive
+                delay={[0, 500]}
+                placement={'bottom-end'}
+                hideOnClick={hideOnClick}
+                onHide={false}
+                offset={[32, 16]}
+                render={(attrs) => (
+                  <div className={cx('popper-info')} tabIndex="-1" {...attrs}>
+                    <PopperWrapper>
+                      <MoreInfoMenu data={items} onClick={handleClick} >
+                        Account information
+                      </MoreInfoMenu>
+
+                      <MoreInfoMenu data={items}>
+                        Shipping address
+                      </MoreInfoMenu>
+
+                      <MoreInfoMenu data={items}>
+                        Order history
+                      </MoreInfoMenu>
+                    </PopperWrapper>
+                  </div>
+                )}
+              >
+                <Image
+                  className={cx('pos-icon')}
+                  src="https://www.lotteria.vn/grs-static/images/icon-pos-2.svg"
+                  alt="pos-icon"
+                  // fallback
+                >
+                </Image>
               </Tippy>
             </>
           )
           : (
             <>
-              <Backdrop
-                sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-                open={open}
-              >
-                <LoginForm onClick={() => {
-                  setOpen(false)
-                }} />
-              </Backdrop>
+              <ButtonCricle onClick={handleToggle}>
+                <Backdrop
+                  sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                  open={open}
+                >
+                  <LoginForm onClick={() => {
+                    setOpen(false)
+                  }} />
+                </Backdrop>
+                <Image
+                  className={cx('pos-icon')}
+                  src="https://www.lotteria.vn/grs-static/images/icon-pos-2.svg"
+                  alt="pos-icon"
+                  // fallback
+                >
+                </Image>
+              </ButtonCricle>
             </>
           )
         }

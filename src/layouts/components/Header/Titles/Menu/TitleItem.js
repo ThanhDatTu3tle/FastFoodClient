@@ -10,9 +10,7 @@ function TitleItem({ title, to, icon }) {
         <NavLink className={(nav) => cx('menu-item', { active: nav.isActive })} to={to}>
             {/* {icon} */}
             <div className={cx('hover-top')}></div>
-
                 {title}
-
             <div className={cx('hover-bottom')}></div>
         </NavLink>
     )

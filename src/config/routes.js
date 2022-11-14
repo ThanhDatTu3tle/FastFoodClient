@@ -11,6 +11,8 @@ const routes = {
   ricepasta: '/ordernow/rice-pasta',
   dessert: '/ordernow/dessert',
   drink: '/ordernow/drink',
+
+  information: '/information'
 }
   
 export default routes;
