@@ -6,7 +6,7 @@
   width: 20%;
   height: 100%;
   border-radius: 40px 0px 0px 40px;
-  background-color: #ff5b6a;
+  background-color: #ffeae3;
 }
 
 .avatar {
@@ -20,35 +20,18 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   font-weight: 700;
   min-width: 100%;
   min-height: 44px;
   padding: 4px 16px;
   margin-top: 20px;
-  background-color: #ff5b6a;
+  background-color: #ff9ea2;
   color: white;
-  border-radius: 4px;
+  border-radius: 10px;
 
   &:hover {
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06)),
       #ff5b6a;
   }
-}
-
-.btn-info {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  font-size: 1.6rem;
-  font-weight: 700;
-  min-width: 100%;
-  min-height: 44px;
-  padding: 4px 16px;
-  margin-top: 20px;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06)),
-    #ff5b6a;
-  color: white;
-  border-radius: 4px;
-  border-bottom: white;
 }

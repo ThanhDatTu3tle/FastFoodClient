@@ -3,6 +3,8 @@ import styles from './SideBar.module.scss';
 import Image from '../../components/Image/Image';
 import Button from '../../components/Button';
 
+import config from '../../config';
+
 const cx = classNames.bind(styles)
 
 function SideBar() {
@@ -21,11 +23,11 @@ function SideBar() {
       </Image>
       {userName}
 
-      <Button className={cx('btn-info')}>Account information</Button>
-      <Button className={cx('btn')}>Shipping address</Button>
-      <Button className={cx('btn')}>Order history</Button>
-      <Button className={cx('btn')}>My menu / wishlist</Button>
-      <Button className={cx('btn')}>Sign out</Button>
+      <Button className={cx('btn')} to={config.routes.information}>Account information</Button>
+      <Button className={cx('btn')} to={config.routes.shippingaddress}>Shipping address</Button>
+      <Button className={cx('btn')} to={config.routes.shippingaddress}>Order history</Button>
+      <Button className={cx('btn')} to={config.routes.shippingaddress}>My menu / wishlist</Button>
+      <Button className={cx('btn')} to={config.routes.shippingaddress}>Sign out</Button>
     </div>
   )
 }

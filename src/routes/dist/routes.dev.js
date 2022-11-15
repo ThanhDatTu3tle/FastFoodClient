@@ -17,6 +17,8 @@ var _RegisterForm = _interopRequireDefault(require("../pages/RegisterForm/Regist
 
 var _Information = _interopRequireDefault(require("../pages/Information/Information"));
 
+var _ShippingAddress = _interopRequireDefault(require("../pages/Information/ShippingAddress"));
+
 var _Chicken = _interopRequireDefault(require("../pages/OrderNow/Chicken/Chicken"));
 
 var _Hamburger = _interopRequireDefault(require("../pages/OrderNow/Hamburger/Hamburger"));
@@ -51,6 +53,10 @@ var publicRoutes = [{
 }, {
   path: _config["default"].routes.information,
   component: _Information["default"],
+  layout: _MainLayout.MainLayout
+}, {
+  path: _config["default"].routes.shippingaddress,
+  component: _ShippingAddress["default"],
   layout: _MainLayout.MainLayout
 }, {
   path: _config["default"].routes.chicken,

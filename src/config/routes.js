@@ -5,7 +5,11 @@ const routes = {
   birthday: '/birthday',
   register: '/register',
   login: '/login',
+
   information: '/information',
+  shippingaddress: '/information/shipping-address',
+  orderhistory: '/information/order-history',
+  wishlist: '/information/wish-list',
 
   chicken: '/ordernow/chicken',
   hamburger: '/ordernow/hamburger',
