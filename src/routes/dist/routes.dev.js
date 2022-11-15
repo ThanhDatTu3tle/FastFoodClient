@@ -19,6 +19,10 @@ var _Information = _interopRequireDefault(require("../pages/Information/Informat
 
 var _ShippingAddress = _interopRequireDefault(require("../pages/Information/ShippingAddress"));
 
+var _OrderHistory = _interopRequireDefault(require("../pages/Information/OrderHistory/OrderHistory"));
+
+var _WishList = _interopRequireDefault(require("../pages/Information/WishList/WishList"));
+
 var _Chicken = _interopRequireDefault(require("../pages/OrderNow/Chicken/Chicken"));
 
 var _Hamburger = _interopRequireDefault(require("../pages/OrderNow/Hamburger/Hamburger"));
@@ -57,6 +61,14 @@ var publicRoutes = [{
 }, {
   path: _config["default"].routes.shippingaddress,
   component: _ShippingAddress["default"],
+  layout: _MainLayout.MainLayout
+}, {
+  path: _config["default"].routes.orderhistory,
+  component: _OrderHistory["default"],
+  layout: _MainLayout.MainLayout
+}, {
+  path: _config["default"].routes.wishlist,
+  component: _WishList["default"],
   layout: _MainLayout.MainLayout
 }, {
   path: _config["default"].routes.chicken,

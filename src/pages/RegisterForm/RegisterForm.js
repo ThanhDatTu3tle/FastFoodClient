@@ -76,7 +76,7 @@ function RegisterForm({ to, onClick, children, ...props }) {
             if (response.status === 201) {
                 localStorage.setItem('hinhAnh', 'avatar')
                 await MySwal.fire({
-                    title: "Đăng nhập thành công",
+                    title: "Đăng ký tài khoản thành công",
                     icon: "success",
                     didOpen: () => {
                         MySwal.showLoading();

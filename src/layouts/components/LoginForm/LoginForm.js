@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import FormControl from '@mui/material/FormControl';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -9,6 +9,9 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import CloseIcon from '@mui/icons-material/Close';
 import classNames from "classnames/bind";
+import axios from 'axios';
+import Swal from 'sweetalert2';
+import withReactContent from "sweetalert2-react-content";
 
 import config from '../../../config';
 import styles from './LoginForm.module.scss';
@@ -20,30 +23,98 @@ const cx = classNames.bind(styles)
 
 function LoginForm({ to, onClick, children, ...props }) {
 
-    const phoneNumberRef = useRef()
-
-    const [values, setValues] = useState({
-        amount: '',
-        password: '',
-        weight: '',
-        weightRange: '',
-        showPassword: false,
-    });
-    
-    const handleChange = (prop) => (event) => {
-        setValues({ ...values, [prop]: event.target.value });
-    };
-
     const handleClickShowPassword = () => {
-        setValues({
-            ...values,
-            showPassword: !values.showPassword,
+        setData({
+            ...data,
+            showPassword: !data.showPassword,
         });
     };
 
-    const handleMouseDownPassword = (event) => {
-        event.preventDefault();
+    const handleMouseDownPassword = (e) => {
+        e.preventDefault();
     };
+
+    const [data, setData] = useState({
+        soDienThoai: '',
+        matKhau: '',
+    })
+
+    const MySwal = withReactContent(Swal);
+
+    const handleSubmit = (e) => {
+        const newData = {...data}
+        newData[e.target.id] = e.target.value
+        setData(newData)
+        localStorage.setItem('soDienThoai', newData.soDienThoai.toString())
+        localStorage.setItem('matKhau', newData.matKhau.toString())
+    }
+
+    const phoneNumber = localStorage.getItem('soDienThoai')
+    const password = localStorage.getItem('matKhau')
+
+    const handleSignIn = () => {
+        axios.get('http://localhost:3001/customer')
+        .then(async function (response) {
+            // console.log('kết quả: ', response.data);
+            if (response.status === 200) {
+
+                response.data.map((user) => {
+                    if (user.soDienThoai === phoneNumber && user.matKhau === password) {
+                        localStorage.setItem('email', user.email)
+                        localStorage.setItem('hoTen', user.hoTen)   
+                        localStorage.setItem('hinhAnh', 'avatar')  
+                        
+                        MySwal.fire({
+                            title: "Đăng nhập thành công",
+                            icon: "success",
+                            didOpen: () => {
+                                MySwal.showLoading();
+                            },
+                            timer: 2000,
+                        });
+                        window.location.href = "/home";
+                    } else if (user.soDienThoai !== phoneNumber && user.matKhau === password) {
+                        // console.log('Sai số điện thoại rồi bạn ei!')
+                        MySwal.fire({
+                            title: "Số điện thoại nhập sai, vui lòng nhập lại!",
+                            icon: "error",
+                            didOpen: () => {
+                                MySwal.showLoading();
+                            },
+                            timer: 3000,
+                        });
+                        // window.location.href = "/home";
+                    } else if (user.soDienThoai === phoneNumber && user.matKhau !== password) {
+                        // console.log('Sai mật khẩu rồi bạn ei!')
+                        MySwal.fire({
+                            title: "Mật khẩu nhập sai, vui lòng nhập lại!",
+                            icon: "error",
+                            didOpen: () => {
+                                MySwal.showLoading();
+                            },
+                            timer: 3000,
+                        });
+                        // window.location.href = "/home";
+                    } else if (user.soDienThoai !== phoneNumber && user.matKhau !== password) {
+                        // console.log('Sai mật khẩu rồi bạn ei!')
+                        MySwal.fire({
+                            title: "Mật khẩu và số điện thoại nhập sai, vui lòng nhập lại!",
+                            icon: "error",
+                            didOpen: () => {
+                                MySwal.showLoading();
+                            },
+                            timer: 3000,
+                        });
+                        // window.location.href = "/home";
+                    }
+                    return user;
+                })
+            }
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    }
 
     return (
         <div className={cx('wrapper')}>
@@ -55,13 +126,11 @@ function LoginForm({ to, onClick, children, ...props }) {
                         <FormControl sx={{ width: '40ch' }} variant="outlined">
                             <InputLabel sx={{ fontSize: '15px' }} htmlFor="outlined-adornment-phone">Phone number</InputLabel>
                             <OutlinedInput
-                                id="outlined-adornment-phone"
+                                id="soDienThoai"
                                 sx={{ fontSize: '15px' }}
-                                // type={values.showPassword ? 'text' : 'password'}
-                                value={values.phone}
-                                onChange={handleChange('phone')}
+                                value={data.soDienThoai}
+                                onChange={(e) => handleSubmit(e)}
                                 label="Phone number"
-                                ref={phoneNumberRef}
                             />
                         </FormControl>
                     </div>
@@ -70,20 +139,20 @@ function LoginForm({ to, onClick, children, ...props }) {
                         <FormControl sx={{ width: '40ch' }} variant="outlined">
                             <InputLabel sx={{ fontSize: '15px' }} htmlFor="outlined-adornment-password">Password</InputLabel>
                             <OutlinedInput
-                                id="outlined-adornment-password"
+                                id="matKhau"
                                 sx={{ fontSize: '15px' }}
-                                type={values.showPassword ? 'text' : 'password'}
-                                value={values.password}
-                                onChange={handleChange('password')}
+                                type={data.showPassword ? 'text' : 'password'}
+                                value={data.matKhau}
+                                onChange={(e) => handleSubmit(e)}
                                 endAdornment={
                                 <InputAdornment position="end">
                                     <IconButton
-                                    aria-label="toggle password visibility"
-                                    onClick={handleClickShowPassword}
-                                    onMouseDown={handleMouseDownPassword}
-                                    edge="end"
+                                        aria-label="toggle password visibility"
+                                        onClick={handleClickShowPassword}
+                                        onMouseDown={handleMouseDownPassword}
+                                        edge="end"
                                     >
-                                    {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                                        {data.showPassword ? <VisibilityOff /> : <Visibility />}
                                     </IconButton>
                                 </InputAdornment>
                                 }
@@ -94,7 +163,7 @@ function LoginForm({ to, onClick, children, ...props }) {
 
                     <div className={cx('wrapper-btn')}>
                         <div className={cx("sign-in-btn")} onClick={onClick}>
-                            <Button primary>Sign in</Button>
+                            <Button primary onClick={handleSignIn}>Sign in</Button>
                         </div>
 
                         <div className={cx("sign-up-btn")} onClick={onClick}>

@@ -13,6 +13,8 @@ import RegisterForm from '../pages/RegisterForm/RegisterForm';
 
 import Information from '../pages/Information/Information';
 import ShippingAddress from '../pages/Information/ShippingAddress';
+import OrderHistory from '../pages/Information/OrderHistory/OrderHistory';
+import WishList from '../pages/Information/WishList/WishList';
 
 import Chicken from '../pages/OrderNow/Chicken/Chicken';
 import Hamburger from '../pages/OrderNow/Hamburger/Hamburger';
@@ -29,6 +31,8 @@ const publicRoutes = [
 
   { path: config.routes.information, component: Information, layout: MainLayout },
   { path: config.routes.shippingaddress, component: ShippingAddress, layout: MainLayout },
+  { path: config.routes.orderhistory, component: OrderHistory, layout: MainLayout },
+  { path: config.routes.wishlist, component: WishList, layout: MainLayout },
 
   { path: config.routes.chicken, component: Chicken, layout: MainLayout },
   { path: config.routes.hamburger, component: Hamburger, layout: MainLayout },

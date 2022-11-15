@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: row;
   width: 1140px;
-  height: 600px;
+  height: 700px;
   margin-top: 20px;
   border-radius: 40px;
   background: rgb(255, 255, 255);
@@ -21,10 +21,17 @@
     align-items: center;
     justify-content: center;
     margin-top: 20px;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
     font-size: 2.5rem;
     font-weight: 700;
     width: 100%;
+  }
+
+  .line {
+    height: 3px;
+    width: 100%;
+    background-color: #ff5b6a;
+    margin-bottom: 30px;
   }
 
   .details {
@@ -32,7 +39,7 @@
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
-    width: 100%;
-    padding: 20px;
+    width: 90%;
+    padding: 10px;
   }
 }

@@ -1,17 +1,17 @@
 import classNames from 'classnames/bind';
 
-import styles from './ShippingAddress.module.scss';
+import styles from './WishList.module.scss';
 import SideBar from '../SideBar';
 
 const cx = classNames.bind(styles)
 
-function ShippingAddress() {
+function WishList() {
   return (
     <div className={cx('wrapper')}>
       <SideBar />
       <div className={cx('content')}>
         <div className={cx('title')}>
-          SHIPPING ADDRESS
+          WISH LIST
         </div>
         <div className={cx('line')}></div>
         
@@ -20,4 +20,4 @@ function ShippingAddress() {
   )
 }
 
-export default ShippingAddress;
+export default WishList;
