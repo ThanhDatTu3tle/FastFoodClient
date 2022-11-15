@@ -10,6 +10,7 @@ import OrderNow from '../pages/OrderNow/OrderNow';
 // import Birthday from '../pages/Birthday';
 import RegisterForm from '../pages/RegisterForm/RegisterForm';
 // import Login from '../pages/Login/Login';
+import Information from '../pages/Information/Information';
 
 import Chicken from '../pages/OrderNow/Chicken/Chicken';
 import Hamburger from '../pages/OrderNow/Hamburger/Hamburger';
@@ -23,6 +24,7 @@ const publicRoutes = [
   { path: config.routes.ordernow, component: OrderNow, layout: MainLayout },
     // { path: config.routes.birthday, component: Birthday, layout: MainLayout },
   { path: config.routes.register, component: RegisterForm, layout: null },
+  { path: config.routes.information, component: Information, layout: MainLayout },
 
   { path: config.routes.chicken, component: Chicken, layout: MainLayout },
   { path: config.routes.hamburger, component: Hamburger, layout: MainLayout },

@@ -21,7 +21,7 @@
   height: 750px;
   border-radius: 50px;
   background-color: #ff5b6a;
-  box-shadow: 1px 1px 5px rgb(0 0 0 / 15%);
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.15);
 }
 
 .left-container {
@@ -33,7 +33,7 @@
   height: 700px;
   border-radius: 30px;
   background-color: white;
-  box-shadow: 1px 1px 5px rgb(0 0 0 / 15%);
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.15);
 }
 
 .sign-up {
@@ -74,16 +74,14 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-
-  p {
-    margin-left: 5px;
-    color: #ff5b6a;
-    cursor: pointer;
-
-    &:hover {
-      color: #d83f4c;
-    }
-  }
+}
+.checkbox p {
+  margin-left: 5px;
+  color: #ff5b6a;
+  cursor: pointer;
+}
+.checkbox p:hover {
+  color: #d83f4c;
 }
 
 .create-acc-btn {
@@ -107,7 +105,6 @@ svg {
     transform: rotate(360deg);
   }
 }
-
 .top-outer {
   transform-origin: 73px 69px;
   animation: rotate 30s linear infinite;

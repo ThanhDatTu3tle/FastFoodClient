@@ -16,7 +16,7 @@ function MoreInfoMenu({ data, onClick, children }) {
     //   </div>
     // </Button>
     <div className={cx('wrapper-moreinfo')}>
-      <Button className={cx('info-item', { separate: data.separate, })} to={config.routes.information} primary onClick={onClick}>
+      <Button className={cx('info-item', { separate: data.separate, })} primary onClick={onClick}>
         {children}
       </Button>
     </div>
