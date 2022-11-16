@@ -15,6 +15,8 @@ var _OrderNow = _interopRequireDefault(require("../pages/OrderNow/OrderNow"));
 
 var _RegisterForm = _interopRequireDefault(require("../pages/RegisterForm/RegisterForm"));
 
+var _Admin = _interopRequireDefault(require("../pages/Admin/Admin"));
+
 var _Information = _interopRequireDefault(require("../pages/Information/Information"));
 
 var _ShippingAddress = _interopRequireDefault(require("../pages/Information/ShippingAddress"));
@@ -39,7 +41,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 //Pages
 // import Promotion from '../pages/Promotion/Promotion';
 // import Birthday from '../pages/Birthday';
-// import Login from '../pages/Login/Login';
 var publicRoutes = [{
   path: _config["default"].routes.home,
   component: _Home["default"],
@@ -54,6 +55,10 @@ var publicRoutes = [{
   path: _config["default"].routes.register,
   component: _RegisterForm["default"],
   layout: null
+}, {
+  path: _config["default"].routes.admin,
+  component: _Admin["default"],
+  layout: _MainLayout.MainLayout
 }, {
   path: _config["default"].routes.information,
   component: _Information["default"],

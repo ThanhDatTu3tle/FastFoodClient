@@ -11,6 +11,7 @@ var routes = {
   birthday: '/birthday',
   register: '/register',
   login: '/login',
+  admin: '/admin',
   information: '/information',
   shippingaddress: '/information/shipping-address',
   orderhistory: '/information/order-history',

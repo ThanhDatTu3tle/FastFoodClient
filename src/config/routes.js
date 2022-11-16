@@ -5,6 +5,7 @@ const routes = {
   birthday: '/birthday',
   register: '/register',
   login: '/login',
+  admin: '/admin',
 
   information: '/information',
   shippingaddress: '/information/shipping-address',

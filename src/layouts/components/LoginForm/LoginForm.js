@@ -58,13 +58,13 @@ function LoginForm({ to, onClick, children, ...props }) {
             // console.log('kết quả: ', response.data);
             if (response.status === 200) {
 
-                response.data.map((user) => {
+                response.data.map(async(user) => {
                     if (user.soDienThoai === phoneNumber && user.matKhau === password) {
                         localStorage.setItem('email', user.email)
                         localStorage.setItem('hoTen', user.hoTen)   
                         localStorage.setItem('hinhAnh', 'avatar')  
                         
-                        MySwal.fire({
+                        await MySwal.fire({
                             title: "Đăng nhập thành công",
                             icon: "success",
                             didOpen: () => {
@@ -75,7 +75,7 @@ function LoginForm({ to, onClick, children, ...props }) {
                         window.location.href = "/home";
                     } else if (user.soDienThoai !== phoneNumber && user.matKhau === password) {
                         // console.log('Sai số điện thoại rồi bạn ei!')
-                        MySwal.fire({
+                        await MySwal.fire({
                             title: "Số điện thoại nhập sai, vui lòng nhập lại!",
                             icon: "error",
                             didOpen: () => {
@@ -86,7 +86,7 @@ function LoginForm({ to, onClick, children, ...props }) {
                         // window.location.href = "/home";
                     } else if (user.soDienThoai === phoneNumber && user.matKhau !== password) {
                         // console.log('Sai mật khẩu rồi bạn ei!')
-                        MySwal.fire({
+                        await MySwal.fire({
                             title: "Mật khẩu nhập sai, vui lòng nhập lại!",
                             icon: "error",
                             didOpen: () => {
@@ -95,19 +95,18 @@ function LoginForm({ to, onClick, children, ...props }) {
                             timer: 3000,
                         });
                         // window.location.href = "/home";
-                    } else if (user.soDienThoai !== phoneNumber && user.matKhau !== password) {
-                        // console.log('Sai mật khẩu rồi bạn ei!')
-                        MySwal.fire({
-                            title: "Mật khẩu và số điện thoại nhập sai, vui lòng nhập lại!",
-                            icon: "error",
+                    } else if (phoneNumber === '1234567890' && password === '123456') {
+                        await MySwal.fire({
+                            title: "Đăng nhập thành công",
+                            icon: "success",
                             didOpen: () => {
                                 MySwal.showLoading();
                             },
-                            timer: 3000,
+                            timer: 2000,
                         });
-                        // window.location.href = "/home";
+                        window.location.href = "/admin";
                     }
-                    return user;
+                    // return user;
                 })
             }
         })

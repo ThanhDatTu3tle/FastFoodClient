@@ -9,7 +9,7 @@ import Home from '../pages/Home/Home';
 import OrderNow from '../pages/OrderNow/OrderNow';
 // import Birthday from '../pages/Birthday';
 import RegisterForm from '../pages/RegisterForm/RegisterForm';
-// import Login from '../pages/Login/Login';
+import Admin from '../pages/Admin/Admin';
 
 import Information from '../pages/Information/Information';
 import ShippingAddress from '../pages/Information/ShippingAddress';
@@ -28,6 +28,7 @@ const publicRoutes = [
   { path: config.routes.ordernow, component: OrderNow, layout: MainLayout },
     // { path: config.routes.birthday, component: Birthday, layout: MainLayout },
   { path: config.routes.register, component: RegisterForm, layout: null },
+  { path: config.routes.admin, component: Admin, layout: MainLayout },
 
   { path: config.routes.information, component: Information, layout: MainLayout },
   { path: config.routes.shippingaddress, component: ShippingAddress, layout: MainLayout },
