@@ -11,12 +11,12 @@ function Title({ content, ...props }) {
         <span className={cx('content')}>{content}</span>
       </div>
 
-      <div className={cx('see-all')}>
+      {/* <div className={cx('see-all')}>
         <button className={cx('btn-see-all')}>
           See all 
-          {/* <Icon /> */}
+          <Icon />
         </button>
-      </div>
+      </div> */}
     </div>
   )
 }

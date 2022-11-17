@@ -5,7 +5,10 @@ const routes = {
   birthday: '/birthday',
   register: '/register',
   login: '/login',
+
   admin: '/admin',
+  users: '/admin/users',
+  products: '/admin/products',
 
   information: '/information',
   shippingaddress: '/information/shipping-address',

@@ -1,12 +1,12 @@
 import classNames from 'classnames/bind';
 
-import SideBar from './SideBar';
-import Options from '../../layouts/components/Header/Options';
-import styles from './Admin.module.scss';
+import SideBar from '../SideBar';
+import Options from '../../../layouts/components/Header/Options';
+import styles from './Users.module.scss';
 
 const cx = classNames.bind(styles)
 
-function Admin() {
+function Users() {
   return (
     <div className={cx('wrapper')}>
       <SideBar></SideBar>
@@ -15,14 +15,14 @@ function Admin() {
 
         <div className={cx('header')}>
           <Options></Options>
-        </div>
+        </div>  
 
         <div className={cx('main-content')}>
-          DASH BOARD
+          DANH SÁCH KHÁCH HÀNG
         </div>
       </div>
     </div>
   )
 }
 
-export default Admin;
+export default Users;

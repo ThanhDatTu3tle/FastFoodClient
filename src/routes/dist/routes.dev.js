@@ -17,6 +17,10 @@ var _RegisterForm = _interopRequireDefault(require("../pages/RegisterForm/Regist
 
 var _Admin = _interopRequireDefault(require("../pages/Admin/Admin"));
 
+var _Users = _interopRequireDefault(require("../pages/Admin/Users/Users"));
+
+var _Products = _interopRequireDefault(require("../pages/Admin/Products/Products"));
+
 var _Information = _interopRequireDefault(require("../pages/Information/Information"));
 
 var _ShippingAddress = _interopRequireDefault(require("../pages/Information/ShippingAddress"));
@@ -58,7 +62,15 @@ var publicRoutes = [{
 }, {
   path: _config["default"].routes.admin,
   component: _Admin["default"],
-  layout: _MainLayout.MainLayout
+  layout: null
+}, {
+  path: _config["default"].routes.users,
+  component: _Users["default"],
+  layout: null
+}, {
+  path: _config["default"].routes.products,
+  component: _Products["default"],
+  layout: null
 }, {
   path: _config["default"].routes.information,
   component: _Information["default"],
