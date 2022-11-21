@@ -18,7 +18,7 @@ function SideBar() {
       </div>
 
       <div className={cx('menu-category')}>
-        <Button primary className={cx('btn')}>
+        <Button primary className={cx('btn')} to={config.routes.admin}>
           <DashboardIcon sx={{ marginRight: '5px' }}/>
           <span></span>
           Dashboard

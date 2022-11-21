@@ -4,12 +4,16 @@ import styles from './Image.module.scss';
 import classNames from 'classnames';
 
 // fallback: customFallback = images.icon_profile,
-const Image = forwardRef(({ children, src, fallback: customFallback = '', alt, href, className, to, ...props }, ref) => {
+const Image = forwardRef(({ onClick, children, src, fallback: customFallback = '', alt, href, className, to, ...props }, ref) => {
 
   const [fallback, setFallback] = useState('')
 
   const handleError = () => {
     setFallback(customFallback)
+  }
+
+  const editImage = () => {
+    console.log('Ngu')
   }
 
   return (
@@ -22,6 +26,7 @@ const Image = forwardRef(({ children, src, fallback: customFallback = '', alt, h
       href={href}
       to={to}
       {...props} 
+      onClick={editImage}
       onError={handleError} 
     >
     </img>

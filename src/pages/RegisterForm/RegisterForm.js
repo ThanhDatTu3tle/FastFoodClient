@@ -65,7 +65,7 @@ function RegisterForm({ to, onClick, children, ...props }) {
 
     const handleSubmitButton = (e) => {
 
-        axios.post('http://localhost:3001/customer', {
+        axios.patch('http://localhost:3001/customer', {
             email: data.email,
             hoTen: data.hoTen,
             soDienThoai: data.soDienThoai,

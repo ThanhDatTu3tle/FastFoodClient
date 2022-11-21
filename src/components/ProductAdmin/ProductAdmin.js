@@ -11,25 +11,14 @@ const cx = classNames.bind(styles)
 
 function ProductAdmin({ data }) {
 
-    const [favoriteState, setFavoriteState] = useState(false)
     const [open, setOpen] = useState(false)
-
-    const handleClick = () => {
-        if (open === false) {
-            setOpen(!open);
-        } 
-
-        if (favoriteState === false) {
-            setFavoriteState(true)
-        } else if (favoriteState === true) {
-            setFavoriteState(false)
-        }
-    }
 
     const handleToggle = () => {
 
         if (open === false) {
             setOpen(!open);
+            // localStorage.setItem('tenMonAn', data.tenMonAn.toString())
+            // localStorage.setItem('giaTien', data.giaTien.toString())
         } 
     };
     
@@ -40,12 +29,12 @@ function ProductAdmin({ data }) {
                 <div className={cx('product-name')}>{data.tenMonAn}</div>
             </div>
             <div className={cx('product-price')}>{data.giaTien.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}đ</div>  
-            <Button primary onClick={handleToggle}>
+            <Button primary small onClick={handleToggle}>
                 <Backdrop
                     sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
                     open={open}
                 >
-                    <EditForm onClick={() => {
+                    <EditForm data={data} onClick={() => {
                         setOpen(false)
                     }} />
                 </Backdrop>
