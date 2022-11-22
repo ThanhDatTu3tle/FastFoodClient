@@ -31,7 +31,7 @@ function ProductAdmin({ data }) {
             <div className={cx('product-price')}>{data.giaTien.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}đ</div>  
             <Button primary small onClick={handleToggle}>
                 <Backdrop
-                    sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                    sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 0 }}
                     open={open}
                 >
                     <EditForm data={data} onClick={() => {

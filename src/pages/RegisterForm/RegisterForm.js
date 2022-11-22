@@ -65,14 +65,14 @@ function RegisterForm({ to, onClick, children, ...props }) {
 
     const handleSubmitButton = (e) => {
 
-        axios.patch('http://localhost:3001/customer', {
+        axios.post('http://localhost:3001/customer', {
             email: data.email,
             hoTen: data.hoTen,
             soDienThoai: data.soDienThoai,
             matKhau: data.matKhau,
         })
         .then(async function (response) {
-            console.log(response);
+            // console.log(response);
             if (response.status === 201) {
                 localStorage.setItem('hinhAnh', 'avatar')
                 await MySwal.fire({

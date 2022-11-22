@@ -41,9 +41,14 @@
 }
 
 .small {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   min-width: 88px;
   min-height: 28px;
   padding: 4px 16px;
+  color: white;
+  background-color: #ff5b6a;
 }
 
 .large {
