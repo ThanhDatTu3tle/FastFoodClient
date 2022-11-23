@@ -20,7 +20,7 @@ function Footer() {
           </div>
           <div className={cx('support')}> 
             <h3>SUPPORT</h3>
-            <p>Lotteria's Terms of Use</p>
+            <p>NKD's Terms of Use</p>
             <p>Privacy Policy</p>
             <p>Delivery policy</p>
             <p>Customer Care</p>
@@ -36,7 +36,7 @@ function Footer() {
       </div>
 
       <div className={cx('copyright')}>
-        © 2022 Lotteria All Rights Reserved Site by LDCC
+        © 2022 NKĐ All Rights Reserved Site by LDCC
       </div>
     </div>
   )

@@ -41,7 +41,7 @@ function Home() {
           </>
           :<></>
         }
-        {/* {productsArr_2 !== null
+        {productsArr_2 !== null
           ?
           <>
             <div className={cx('products')}>
@@ -52,7 +52,7 @@ function Home() {
           </>
           :<></>
         }
-        {productsArr_3 !== null
+        {/* {productsArr_3 !== null
           ?
           <>
             <div className={cx('products')}>

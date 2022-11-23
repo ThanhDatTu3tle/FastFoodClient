@@ -71,7 +71,7 @@ function Cart({ onClick }) {
         <p>Tổng cộng:</p>
         {total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}đ
       </div>
-      <Button primary>Check outlined</Button>
+      <Button primary>Check out</Button>
     </div>
   )
 }
