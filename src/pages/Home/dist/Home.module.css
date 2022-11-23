@@ -1,0 +1,31 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: fit-content;
+}
+.wrapper .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 15px;
+  width: 1140px;
+}
+.wrapper .container .products {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 600px;
+  margin-top: 20px;
+}
+.wrapper .container .news {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 300px;
+}

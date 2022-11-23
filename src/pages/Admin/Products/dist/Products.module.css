@@ -43,7 +43,12 @@
   flex-direction: column;
   width: 80%;
   height: 400px;
-  margin-top: 20px;
+}
+.container-products .container-header {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
 }
 .container-products .products {
   display: flex;
@@ -60,4 +65,5 @@
   width: 20%;
   height: 400px;
   margin-top: 20px;
+  margin-left: 20px;
 }

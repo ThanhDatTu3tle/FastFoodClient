@@ -12,6 +12,7 @@ import config from '../../../config';
 import Button from '../../../components/Button';
 import { Wrapper as PopperWrapper } from '../../../components/Popper';
 import MoreInfoMenu from '../../../components/Popper/Menu/MoreInfoMenu';
+import Cart from '../Cart/Cart';
 
 const cx = classNames.bind(styles);
 
@@ -43,7 +44,7 @@ function Options({ items = [], children, hideOnClick = false }) {
                 sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
                 open={open}
               >
-                <LoginForm onClick={() => {
+                <Cart onClick={() => {
                   setOpen(false)
                 }} />
               </Backdrop>
@@ -51,25 +52,27 @@ function Options({ items = [], children, hideOnClick = false }) {
                 className={cx('notification-icon')}
                 src="https://www.lotteria.vn/grs-static/images/icon-notification.svg"
                 alt="notification-icon"
-                // fallback
               />
             </ButtonCricle>
 
-            <ButtonCricle onClick={handleToggle}>
+            <ButtonCricle onClick={handleToggle} className={cx('cart')}>
               <Backdrop
                 sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
                 open={open}
               >
-                <LoginForm onClick={() => {
+                <Cart onClick={() => {
                   setOpen(false)
                 }} />
               </Backdrop>
+              <div className={cx('number-of-products')}>
+                {localStorage.getItem('numberOfProductsInCart')}
+              </div>
               <Image
                 className={cx('cart-icon')}
                 src="https://www.lotteria.vn/grs-static/images/icon-cart.svg"
                 alt="cart-icon"
-                // fallback
               />
+
             </ButtonCricle>
 
             <ButtonCricle to={config.routes.information}>

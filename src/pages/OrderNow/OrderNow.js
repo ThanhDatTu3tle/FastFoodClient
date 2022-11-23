@@ -38,7 +38,7 @@ function OrderNow() {
             <Product key={data.maMonAn} data={data}/>
           ))} 
         </div>
-        <div className={cx('products')}>
+        {/* <div className={cx('products')}>
           {productsArr_2.map((data) => (
             <Product key={data.maMonAn} data={data}/>
           ))} 
@@ -47,7 +47,7 @@ function OrderNow() {
           {productsArr_3.map((data) => (
             <Product key={data.maMonAn} data={data}/>
           ))} 
-        </div>
+        </div> */}
       </div>
     </div>
   )

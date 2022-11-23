@@ -1,0 +1,29 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 500px;
+  height: 100px;
+  padding: 20px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 70%;
+  height: auto;
+  margin-left: 40px;
+  color: black;
+}
+
+.price {
+  display: flex;
+  flex-direction: row;
+  color: black;
+}
+
+.product-image {
+  width: 120px;
+  height: 80px;
+}

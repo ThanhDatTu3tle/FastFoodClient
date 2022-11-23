@@ -20,31 +20,49 @@ function Home() {
   }, [])
 
   const productsArr_1 = products.slice(0, 3)
-  // console.log('1: ', productsArr_1)
+
   const productsArr_2 = products.slice(3, 6)
-  // console.log('2: ', productsArr_2)
+
   const productsArr_3 = products.slice(6, 9)
-  // console.log('3: ', productsArr_3)
+
 
   return (
     <div className={cx('wrapper')}>
       <div className={cx('container')}>
         <Title content={'SPECIAL PROMOTION'}/>
-        <div className={cx('products')}>
-          {productsArr_1.map((data) => (
-            <Product key={data.maMonAn} data={data}/>
-          ))} 
-        </div>
-        <div className={cx('products')}>
-          {productsArr_2.map((data) => (
-            <Product key={data.maMonAn} data={data}/>
-          ))} 
-        </div>
-        <div className={cx('products')}>
-          {productsArr_3.map((data) => (
-            <Product key={data.maMonAn} data={data}/>
-          ))} 
-        </div>
+        {productsArr_1 !== null
+          ?
+          <>
+            <div className={cx('products')}>
+              {productsArr_1.map((data) => (
+                <Product key={data.maMonAn} data={data}/>
+              ))} 
+            </div>
+          </>
+          :<></>
+        }
+        {/* {productsArr_2 !== null
+          ?
+          <>
+            <div className={cx('products')}>
+              {productsArr_2.map((data) => (
+                <Product key={data.maMonAn} data={data}/>
+              ))} 
+            </div>
+          </>
+          :<></>
+        }
+        {productsArr_3 !== null
+          ?
+          <>
+            <div className={cx('products')}>
+              {productsArr_3.map((data) => (
+                <Product key={data.maMonAn} data={data}/>
+              ))} 
+            </div>
+          </>
+          :<></>
+        } */}
 
         <Title content={'NEWS'}/>
         <div className={cx('news')}>

@@ -10,3 +10,25 @@
 .acc-avatar {
   border-radius: 50%;
 }
+
+.cart {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: transparent;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.number-of-products {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  color: #ff5b6a;
+  margin-left: 20px;
+}
