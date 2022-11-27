@@ -27,6 +27,7 @@ import Dessert from '../pages/OrderNow/Dessert/Dessert';
 import Drink from '../pages/OrderNow/Drink/Drink';
 
 import Checkout from '../pages/Checkout/Checkout';
+import Pay from '../pages/Pay/Pay';
 
 const publicRoutes = [
   { path: config.routes.home, component: Home, layout: MainLayout },
@@ -51,6 +52,7 @@ const publicRoutes = [
   { path: config.routes.drink, component: Drink, layout: MainLayout },
 
   { path: config.routes.checkout, component: Checkout, layout: CheckoutLayout },
+  { path: config.routes.pay, component: Pay, layout: CheckoutLayout },
 ]
 
 const privateRoutes = []

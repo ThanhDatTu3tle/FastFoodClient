@@ -43,6 +43,8 @@ var _Drink = _interopRequireDefault(require("../pages/OrderNow/Drink/Drink"));
 
 var _Checkout = _interopRequireDefault(require("../pages/Checkout/Checkout"));
 
+var _Pay = _interopRequireDefault(require("../pages/Pay/Pay"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 // Layouts
@@ -114,6 +116,10 @@ var publicRoutes = [{
 }, {
   path: _config["default"].routes.checkout,
   component: _Checkout["default"],
+  layout: _CheckoutLayout.CheckoutLayout
+}, {
+  path: _config["default"].routes.pay,
+  component: _Pay["default"],
   layout: _CheckoutLayout.CheckoutLayout
 }];
 exports.publicRoutes = publicRoutes;

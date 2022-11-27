@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from "classnames/bind";
 
@@ -9,6 +9,21 @@ import ButtonCricle from '../../components/ButtonCricle/ButtonCricle';
 const cx = classNames.bind(styles)
 
 function Header() {
+
+  const currUrl = window.location.href
+  const [statusCart, setStatusCart] = useState(true)
+  const [statusPay, setStatusPay] = useState(false)
+
+  useEffect(() => {
+    if (currUrl === 'http://localhost:3002/pay') {
+      setStatusCart(false)
+      setStatusPay(true)
+    } else {
+      setStatusCart(true)
+      setStatusPay(false)
+    }
+  }, [])
+
   return (
     <div className={cx('wrapper')}>
       <div className={cx('container')}>
@@ -21,14 +36,14 @@ function Header() {
 
           <div className={cx('status')}>
             <div className={cx('cart')}>
-              <ButtonCricle outline></ButtonCricle>
+              <ButtonCricle outline={statusCart}></ButtonCricle>
               Giỏ hàng
             </div>
 
             <div className={cx('line')}></div>
 
             <div className={cx('payment')}>
-              <ButtonCricle ></ButtonCricle>
+              <ButtonCricle outline={statusPay}></ButtonCricle>
               Thanh toán
             </div>
           </div>

@@ -23,7 +23,8 @@ var routes = {
   ricepasta: '/ordernow/rice-pasta',
   dessert: '/ordernow/dessert',
   drink: '/ordernow/drink',
-  checkout: '/checkout'
+  checkout: '/checkout',
+  pay: '/pay'
 };
 var _default = routes;
 exports["default"] = _default;

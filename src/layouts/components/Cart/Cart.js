@@ -76,7 +76,7 @@ function Cart({ onClick }) {
         <p>Tổng cộng:</p>
         {total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}đ
       </div>
-      <Button primary to={config.routes.checkout} onClick={handleCheckOut}>Check out</Button>
+      <Button className={cx('btn-checkout')} to={config.routes.checkout} onClick={handleCheckOut}>Check out</Button>
     </div>
   )
 }

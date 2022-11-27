@@ -22,6 +22,7 @@ const routes = {
   drink: '/ordernow/drink',
 
   checkout: '/checkout',
+  pay: '/pay',
 }
   
 export default routes;

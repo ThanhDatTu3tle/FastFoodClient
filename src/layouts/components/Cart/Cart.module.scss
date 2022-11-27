@@ -33,3 +33,27 @@
   color: black;
   margin-top: 20px;
 }
+
+.btn-checkout {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  font-size: 1.6rem;
+  font-weight: 700;
+  min-width: 100%;
+  min-height: 44px;
+  padding: 10px 22px;
+  border-radius: 2px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  line-height: 22px;
+  user-select: none;
+  background-color: #ff5b6a;
+  color: white !important;
+  border-radius: 5px;
+
+  &:hover {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06)),
+      #ff5b6a;
+  }
+}
