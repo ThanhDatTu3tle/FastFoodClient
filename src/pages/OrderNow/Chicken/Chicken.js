@@ -9,23 +9,18 @@ const cx = classNames.bind(styles)
 function Chicken() {
 
   const [products, setProducts] = useState([])
-  // const [category, setCategory] = useState()
 
   useEffect(() => {
       fetch('http://localhost:3001/products/MDM01')
           .then((response) => response.json())
           .then((data) => {
               setProducts(data)
-              console.log(data)
           });
   }, [])
 
   const productsArr_1 = products.slice(0, 3)
-  // console.log('1: ', productsArr_1)
   const productsArr_2 = products.slice(3, 6)
-  // console.log('2: ', productsArr_2)
   const productsArr_3 = products.slice(6, 9)
-  // console.log('3: ', productsArr_3)
 
   return (
     <div className={cx('wrapper')}>

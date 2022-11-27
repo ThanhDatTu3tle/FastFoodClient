@@ -9,6 +9,8 @@ var _config = _interopRequireDefault(require("../config/"));
 
 var _MainLayout = require("../layouts/MainLayout");
 
+var _CheckoutLayout = require("../layouts/CheckoutLayout");
+
 var _Home = _interopRequireDefault(require("../pages/Home/Home"));
 
 var _OrderNow = _interopRequireDefault(require("../pages/OrderNow/OrderNow"));
@@ -38,6 +40,8 @@ var _Ricepasta = _interopRequireDefault(require("../pages/OrderNow/Ricepasta/Ric
 var _Dessert = _interopRequireDefault(require("../pages/OrderNow/Dessert/Dessert"));
 
 var _Drink = _interopRequireDefault(require("../pages/OrderNow/Drink/Drink"));
+
+var _Checkout = _interopRequireDefault(require("../pages/Checkout/Checkout"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -107,6 +111,10 @@ var publicRoutes = [{
   path: _config["default"].routes.drink,
   component: _Drink["default"],
   layout: _MainLayout.MainLayout
+}, {
+  path: _config["default"].routes.checkout,
+  component: _Checkout["default"],
+  layout: _CheckoutLayout.CheckoutLayout
 }];
 exports.publicRoutes = publicRoutes;
 var privateRoutes = [];

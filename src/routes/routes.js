@@ -2,6 +2,7 @@ import config from '../config/';
 
 // Layouts
 import { MainLayout } from '../layouts/MainLayout';
+import { CheckoutLayout } from '../layouts/CheckoutLayout';
 
 //Pages
 import Home from '../pages/Home/Home';
@@ -25,6 +26,8 @@ import Ricepasta from '../pages/OrderNow/Ricepasta/Ricepasta';
 import Dessert from '../pages/OrderNow/Dessert/Dessert';
 import Drink from '../pages/OrderNow/Drink/Drink';
 
+import Checkout from '../pages/Checkout/Checkout';
+
 const publicRoutes = [
   { path: config.routes.home, component: Home, layout: MainLayout },
   // { path: config.routes.promotion, component: Promotion, layout: MainLayout },
@@ -46,6 +49,8 @@ const publicRoutes = [
   { path: config.routes.ricepasta, component: Ricepasta, layout: MainLayout },
   { path: config.routes.dessert, component: Dessert, layout: MainLayout },
   { path: config.routes.drink, component: Drink, layout: MainLayout },
+
+  { path: config.routes.checkout, component: Checkout, layout: CheckoutLayout },
 ]
 
 const privateRoutes = []

@@ -20,6 +20,8 @@ const routes = {
   ricepasta: '/ordernow/rice-pasta',
   dessert: '/ordernow/dessert',
   drink: '/ordernow/drink',
+
+  checkout: '/checkout',
 }
   
 export default routes;

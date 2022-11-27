@@ -5,6 +5,7 @@ import ProductCard from "./ProductCard";
 import styles from './Cart.module.scss';
 import Title from '../../../components/Title/Title';
 import Button from "../../../components/Button/Button";
+import config from '../../../config';
 
 const cx = classNames.bind(styles)
 
@@ -45,6 +46,10 @@ function Cart({ onClick }) {
     return x + y
   }, 0)
 
+  const handleCheckOut = () => {
+    localStorage.setItem('total', total)
+  }
+
   return (
     <div className={cx('wrapper')}>
       <div className={cx('header')}>
@@ -71,7 +76,7 @@ function Cart({ onClick }) {
         <p>Tổng cộng:</p>
         {total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}đ
       </div>
-      <Button primary>Check out</Button>
+      <Button primary to={config.routes.checkout} onClick={handleCheckOut}>Check out</Button>
     </div>
   )
 }

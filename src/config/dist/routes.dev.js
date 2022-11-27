@@ -22,7 +22,8 @@ var routes = {
   hamburger: '/ordernow/hamburger',
   ricepasta: '/ordernow/rice-pasta',
   dessert: '/ordernow/dessert',
-  drink: '/ordernow/drink'
+  drink: '/ordernow/drink',
+  checkout: '/checkout'
 };
 var _default = routes;
 exports["default"] = _default;

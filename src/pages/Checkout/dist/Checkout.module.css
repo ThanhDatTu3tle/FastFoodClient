@@ -1,0 +1,33 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: fit-content;
+  justify-content: flex-start;
+}
+
+.left-content {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  height: fit-content;
+}
+.left-content .products {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: fit-content;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.right-content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 30%;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}

@@ -1,0 +1,34 @@
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+  width: 90%;
+  padding: 15px 10px;
+  margin: 0 10px;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.15);
+}
+
+.total {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 90%;
+}
+
+.shipping-fee {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 90%;
+}
+
+.price {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 90%;
+}

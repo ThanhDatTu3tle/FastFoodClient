@@ -5,7 +5,7 @@ import styles from './ButtonCricle.module.scss';
 
 const cx = classNames.bind(styles)
 
-function ButtonCricle({ to, href, children, onClick, disable = false, ...passProps }) {
+function ButtonCricle({ to, href, children, onClick, outline = false, disable = false, ...passProps }) {
 
   let Comp = 'button'
 
@@ -32,7 +32,7 @@ function ButtonCricle({ to, href, children, onClick, disable = false, ...passPro
   }
 
   const classes = cx('wrapper', {
-    disable
+    outline,
   })
 
   return (

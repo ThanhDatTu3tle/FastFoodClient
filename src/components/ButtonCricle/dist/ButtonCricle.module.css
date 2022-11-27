@@ -10,3 +10,12 @@
   background-color: transparent;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
+
+.outline {
+  background-color: #ff5b6a;
+  border-color: #ff5b6a;
+  color: #ff5b6a;
+}
+.outline:hover {
+  background-color: rgba(254, 44, 85, 0.06);
+}
