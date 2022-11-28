@@ -72,7 +72,6 @@ function Product({ data }) {
                 },
                 timer: 1000,
             });
-            // window.location.reload()
         }
     };
     
