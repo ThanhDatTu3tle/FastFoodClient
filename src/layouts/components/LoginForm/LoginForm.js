@@ -53,6 +53,22 @@ function LoginForm({ to, onClick, children, ...props }) {
     const password = localStorage.getItem('matKhau')
 
     const handleSignIn = () => {
+        axios.get('http://localhost:3001/address')
+        .then(function (response) {
+            const data = response.data
+            const lastIndex = data.length
+            const arrCodeAddress = []
+            for (let i = 0; i < lastIndex; i++) {
+                const codeAddress = data[i].maDiaChi
+                arrCodeAddress.push(codeAddress)
+            }
+            const lastCodeAddress = arrCodeAddress.pop()
+            localStorage.setItem('maDiaChiCuoi', lastCodeAddress)
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
+
         axios.get('http://localhost:3001/customer')
         .then(async function (response) {
             // console.log('kết quả: ', response.data);

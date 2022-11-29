@@ -19,7 +19,7 @@
 .content .title {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   margin-top: 20px;
   margin-bottom: 30px;
   font-size: 2.5rem;
@@ -31,4 +31,30 @@
   width: 100%;
   background-color: #ff5b6a;
   margin-bottom: 30px;
+}
+.content .container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 80%;
+}
+.content .container .address {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+}
+.content .container .address .info-address {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.content .container .address .info-address .details {
+  display: flex;
+  flex-direction: column;
 }
