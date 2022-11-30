@@ -23,6 +23,7 @@ function AddressForm({ onClick }) {
     const suffix = maDiaChi.slice(4, 10)
     const arrSuffix = suffix.split('')
     const lastArrSuffix = arrSuffix[5]
+    const result = []
 
     const [data, setData] = useState({
         diaChi: '',
@@ -39,22 +40,24 @@ function AddressForm({ onClick }) {
 
     const MySwal = withReactContent(Swal);
 
+    if (arrSuffix[4] === '0' && arrSuffix[5] !== '9') {
+        const last = +arrSuffix[5] + 1
+        const newSuffix = suffix.replace(lastArrSuffix, last)
+        const arrPrefix = prefix.split('')
+        const arrNewSuffix = newSuffix.split('')
+        const arrResult = arrPrefix.concat(arrNewSuffix).toString().split(',').join('')
+
+        localStorage.setItem('maDiaChiMoi', arrResult)
+    }
+
+    const newCodeAddress = localStorage.getItem('maDiaChiMoi')
+
     const handleSubmitButton = (e) => {
 
-        if (arrSuffix[4] === '0' && arrSuffix[5] !== '9') {
-            const last = +arrSuffix[5] + 1
-            const newSuffix = suffix.replace(lastArrSuffix, last)
-            const arrPrefix = prefix.split('')
-            const arrNewSuffix = newSuffix.split('')
-            const result = arrPrefix.concat(arrNewSuffix).toString().split(',').join('')
-    
-            setCurrCodeAddress(result)
-        }
-    
-        console.log(currCodeAddress)
+
 
         axios.post('http://localhost:3001/address', {
-            maDiaChi: currCodeAddress,
+            maDiaChi: newCodeAddress,
             email: email,
             diaChi: data.diaChi,
             tenDiaChi: data.tenDiaChi,
