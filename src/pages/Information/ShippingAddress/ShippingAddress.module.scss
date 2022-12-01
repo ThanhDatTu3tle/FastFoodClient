@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: row;
   width: 1140px;
-  height: 700px;
+  height: fit-content;
   margin-top: 20px;
   border-radius: 40px;
   background: rgb(255, 255, 255);
@@ -14,7 +14,7 @@
   align-items: center;
   flex-direction: column;
   width: 80%;
-  height: 100%;
+  height: fit-content;
 
   .title {
     display: flex;
@@ -31,7 +31,6 @@
     height: 3px;
     width: 100%;
     background-color: #ff5b6a;
-    margin-bottom: 30px;
   }
 
   .container {
@@ -39,6 +38,7 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
+    margin-bottom: 10px;
     width: 80%;
 
     .address {
@@ -46,6 +46,7 @@
       flex-direction: column;
       align-items: flex-start;
       justify-content: center;
+      margin-bottom: 10px;
       width: 100%;
 
       .info-address {

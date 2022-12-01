@@ -14,8 +14,6 @@ const cx = classNames.bind(styles)
 
 function AddressForm({ onClick }) {
 
-    const [currCodeAddress, setCurrCodeAddress] = useState('')
-
     const email = localStorage.getItem('email')
     const maDiaChi = localStorage.getItem('maDiaChiCuoi')
 
@@ -23,7 +21,10 @@ function AddressForm({ onClick }) {
     const suffix = maDiaChi.slice(4, 10)
     const arrSuffix = suffix.split('')
     const lastArrSuffix = arrSuffix[5]
-    const result = []
+    const nextLastArrSuffix_4 = arrSuffix[4]
+    // const nextLastArrSuffix_3 = arrSuffix[3]
+    // const nextLastArrSuffix_2 = arrSuffix[2]
+    // const nextLastArrSuffix_1 = arrSuffix[1]
 
     const [data, setData] = useState({
         diaChi: '',
@@ -40,21 +41,45 @@ function AddressForm({ onClick }) {
 
     const MySwal = withReactContent(Swal);
 
-    if (arrSuffix[4] === '0' && arrSuffix[5] !== '9') {
-        const last = +arrSuffix[5] + 1
-        const newSuffix = suffix.replace(lastArrSuffix, last)
-        const arrPrefix = prefix.split('')
-        const arrNewSuffix = newSuffix.split('')
-        const arrResult = arrPrefix.concat(arrNewSuffix).toString().split(',').join('')
-
-        localStorage.setItem('maDiaChiMoi', arrResult)
-    }
-
-    const newCodeAddress = localStorage.getItem('maDiaChiMoi')
-
     const handleSubmitButton = (e) => {
 
-
+        if (arrSuffix[4] === '0' && arrSuffix[5] !== '9') {
+            const last = +arrSuffix[5] + 1
+            const newSuffix = suffix.replace(lastArrSuffix, last)
+            const arrPrefix = prefix.split('')
+            const arrNewSuffix = newSuffix.split('')
+            const arrResult = arrPrefix.concat(arrNewSuffix).toString().split(',').join('')
+    
+            localStorage.setItem('maDiaChiMoi', arrResult)
+    
+        } else if (arrSuffix[4] === '0' && arrSuffix[5] === '9') {
+            arrSuffix[5] = '0'
+            const newSuffix = suffix.replace(lastArrSuffix, arrSuffix[5])
+    
+            const arrNewSuffix = newSuffix.split('')
+    
+            arrNewSuffix[4] = '1'
+            const newwSuffix = arrNewSuffix.toString().split(',').join('')
+    
+            const arrPrefix = prefix.split('')
+            const arrNewwSuffix = newwSuffix.split('')
+            const arrResult = arrPrefix.concat(arrNewwSuffix).toString().split(',').join('')
+    
+            localStorage.setItem('maDiaChiMoi', arrResult)
+        } else if (arrSuffix[4] === '1' && arrSuffix[5] !== '9') {
+            const arraySuffix = suffix.split('')
+            arraySuffix[5] = +arraySuffix[5] + 1
+            const newSuffix = arraySuffix.toString().split(',').join('')
+            console.log(newSuffix)
+            const arrPrefix = prefix.split('')
+            const arrNewSuffix = newSuffix.split('')
+            const arrResult = arrPrefix.concat(arrNewSuffix).toString().split(',').join('')
+    
+            localStorage.setItem('maDiaChiMoi', arrResult)
+        }
+    
+        const newCodeAddress = localStorage.getItem('maDiaChiMoi')
+        localStorage.setItem('maDiaChiCuoi', newCodeAddress)
 
         axios.post('http://localhost:3001/address', {
             maDiaChi: newCodeAddress,

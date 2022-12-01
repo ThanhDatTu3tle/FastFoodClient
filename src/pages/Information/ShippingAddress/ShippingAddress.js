@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import classNames from 'classnames/bind';
 import axios from 'axios';
 import Backdrop from '@mui/material/Backdrop';
@@ -42,8 +42,16 @@ function ShippingAddress() {
     
   }
 
-  const handleBtnDelete = () => {
-    
+  // const MDC = localStorage.getItem('maDiaChi')
+  const pMaDiaChi = useRef()
+  const btnDelete = useRef()
+  const divAddress = useRef()
+
+  const handleBtnDelete = (data) => {
+    // axios.delete(`http://localhost:3001/address/${MDC}`)
+    console.log(divAddress.current)
+    console.log(pMaDiaChi.current.innerText)
+    console.log(data)
   }
 
   return (
@@ -70,7 +78,7 @@ function ShippingAddress() {
           <div className={cx('address')}>
             {address.map((data) => (
               <>
-                <div className={cx('info-address')}>
+                <div ref={divAddress} className={cx('info-address')}>
                   <div className={cx('details')}>
                     <Title content={data.tenDiaChi}/>
                     <p>{data.diaChi}</p>
@@ -78,9 +86,8 @@ function ShippingAddress() {
                   <Button small onClick={handleBtnFix}>Chỉnh sửa</Button>
                 </div>
               
-                <Button primary onClick={handleBtnDelete}>Xóa</Button>
+                <Button ref={btnDelete} data={data} primary onClick={(data) => handleBtnDelete(data)}>Xóa</Button>
               </>
-
             ))}
           </div>
         </div>
