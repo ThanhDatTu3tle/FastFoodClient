@@ -69,6 +69,22 @@ function LoginForm({ to, onClick, children, ...props }) {
             console.log(error);
         })
 
+        axios.get('http://localhost:3001/favorite')
+        .then(function (response) {
+            const data = response.data
+            const lastIndex = data.length
+            const arrCodeFavorite = []
+            for (let i = 0; i < lastIndex; i++) {
+                const codeFavorite = data[i].maMonAnYeuThich
+                arrCodeFavorite.push(codeFavorite)
+            }
+            const lastCodeFavorite = arrCodeFavorite.pop()
+            localStorage.setItem('maMonAnYeuThichCuoi', lastCodeFavorite)
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
+
         axios.get('http://localhost:3001/customer')
         .then(async function (response) {
             // console.log('kết quả: ', response.data);
