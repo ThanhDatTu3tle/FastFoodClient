@@ -11,16 +11,15 @@ const cx = classNames.bind(styles)
 function WishList() {
 
   const email = localStorage.getItem('email')
-  const resultEmail = email.replace('@', '%40')
 
   const [products, setProducts] = useState([])
 
-  axios.get(`http://localhost:3001/favorite/${resultEmail}`)
+  axios.get(`http://localhost:3001/favorite`)
   .then(function (response) {
     const arrProducts = response.data
     const arrFavoriteProducts = []
     for (let i = 0; i < arrProducts.length; i++) {
-      if (arrProducts[i].maMonAn.yeuThich === true) {
+      if (arrProducts[i].email.email === email) {
         arrFavoriteProducts.push(arrProducts[i])
       }
     }

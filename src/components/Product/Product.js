@@ -15,16 +15,16 @@ const cx = classNames.bind(styles)
 function Product({ data }) {
 
     const user = localStorage.getItem('hoTen')
+    const email = localStorage.getItem('email')
     const maMonAnYeuThich = localStorage.getItem('maMonAnYeuThichCuoi')
 
     const prefix = maMonAnYeuThich.slice(0, 6)
     const suffix = maMonAnYeuThich.slice(6, 10)
     const arrSuffix = suffix.split('')
-    console.log(arrSuffix)
     const lastArrSuffix = arrSuffix[3]
-    const nextLastArrSuffix_4 = arrSuffix[2]
+    // const nextLastArrSuffix_4 = arrSuffix[2]
 
-    const [favoriteState, setFavoriteState] = useState(Boolean)
+    const [favoriteState, setFavoriteState] = useState(false)
     const [count, setCount] = useState(1)
 
     const handleClick = async () => {
@@ -41,11 +41,9 @@ function Product({ data }) {
             await localStorage.setItem(`yeuThich${data.maMonAn}`, JSON.stringify(productFavorite))
 
             if (arrSuffix[2] === '0' && arrSuffix[3] !== '9') {
-                console.log(suffix)
                 const arraySuffix = suffix.split('')
-                arrSuffix[3] = +arrSuffix[3] + 1
+                arraySuffix[3] = +arraySuffix[3] + 1
                 const newSuffix = arraySuffix.toString().split(',').join('')
-                console.log(newSuffix)
                 const arrPrefix = prefix.split('')
                 const arrNewSuffix = newSuffix.split('')
                 const arrResult = arrPrefix.concat(arrNewSuffix).toString().split(',').join('')
@@ -54,10 +52,8 @@ function Product({ data }) {
         
             } else if (arrSuffix[2] === '0' && arrSuffix[3] === '9') {
                 arrSuffix[3] = '0'
-                const newSuffix = suffix.replace(lastArrSuffix, arrSuffix[5])
-        
+                const newSuffix = suffix.replace(lastArrSuffix, arrSuffix[3])
                 const arrNewSuffix = newSuffix.split('')
-        
                 arrNewSuffix[2] = '1'
                 const newwSuffix = arrNewSuffix.toString().split(',').join('')
         
@@ -70,7 +66,6 @@ function Product({ data }) {
                 const arraySuffix = suffix.split('')
                 arraySuffix[3] = +arraySuffix[3] + 1
                 const newSuffix = arraySuffix.toString().split(',').join('')
-                console.log(newSuffix)
                 const arrPrefix = prefix.split('')
                 const arrNewSuffix = newSuffix.split('')
                 const arrResult = arrPrefix.concat(arrNewSuffix).toString().split(',').join('')
@@ -81,23 +76,20 @@ function Product({ data }) {
             const newCodeFavorite = localStorage.getItem('maMonAnYeuThichMoi')
             localStorage.setItem('maMonAnYeuThichCuoi', newCodeFavorite)
 
-            axios.post(`http://localhost:3001/favorite`, {
+            await axios.post(`http://localhost:3001/favorite`, {
                 maMonAnYeuThich: newCodeFavorite,
-                maMonAn: data.maMonAn.maMonAn,
-                email: data.email.email,
+                maMonAn: data.maMonAn,
+                email: email,
             })
             .then(function (response) {
-                 const arrFavoriteProducts = response.data
-                 console.log(arrFavoriteProducts)
-                // const arrFavoriteProducts = []
-                // for (let i = 0; i < arrProducts.length; i++) {
-                //     if (arrProducts[i].yeuThich === true) {
-                //     arrFavoriteProducts.push(arrProducts[i])
-                //     }
-                // }
-                // setProducts(arrFavoriteProducts)
+
+                if( response.status === 200) {
+                    const arrFavoriteProducts = response.data
+                    return arrFavoriteProducts
+                }
+
             })
-                .catch(function (error) {
+            .catch(function (error) {
                 console.log(error);
             })
 

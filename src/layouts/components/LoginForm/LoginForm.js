@@ -79,7 +79,11 @@ function LoginForm({ to, onClick, children, ...props }) {
                 arrCodeFavorite.push(codeFavorite)
             }
             const lastCodeFavorite = arrCodeFavorite.pop()
-            localStorage.setItem('maMonAnYeuThichCuoi', lastCodeFavorite)
+            if (lastCodeFavorite === undefined) {
+                localStorage.setItem('maMonAnYeuThichCuoi', 'MMAYT-0000')
+            } else {
+                localStorage.setItem('maMonAnYeuThichCuoi', lastCodeFavorite)
+            }
         })
         .catch(function (error) {
             console.log(error);
