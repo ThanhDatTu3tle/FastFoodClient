@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import classNames from "classnames/bind";
+import Swal from 'sweetalert2';
+import withReactContent from "sweetalert2-react-content";
 
 import ProductCard from "./ProductCard";
 import styles from './Cart.module.scss';
@@ -46,7 +48,16 @@ function Cart({ onClick }) {
     return x + y
   }, 0)
 
-  const handleCheckOut = () => {
+  const MySwal = withReactContent(Swal);
+
+  const handleCheckOut = async () => {
+    await MySwal.fire({
+      title: "Vui lòng đợi trong giây lát!",
+      didOpen: () => {
+          MySwal.showLoading();
+      },
+      timer: 2000,
+    });
     localStorage.setItem('total', total)
   }
 
