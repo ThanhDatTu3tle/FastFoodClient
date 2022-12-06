@@ -6,6 +6,7 @@ import Title from '../../components/Title/Title';
 import Image from "../../components/Image/Image";
 import AddressPayment from "../../layouts/components/AddressPayment/AddressPayment";
 import Coupon from '../../components/Coupon/Coupon';
+import OrderInfo from '../../components/OrderInfo/OrderInfo';
 
 const cx = classNames.bind(styles)
 
@@ -100,6 +101,8 @@ function Pay() {
 
       <div className={cx('right-container')}>
         <AddressPayment content={content}/>
+
+        <OrderInfo></OrderInfo>
       </div>
     </div>
   )

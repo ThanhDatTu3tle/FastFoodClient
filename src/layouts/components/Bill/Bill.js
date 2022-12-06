@@ -16,15 +16,38 @@ function Bill() {
   const MySwal = withReactContent(Swal);
 
   const handleBtnContinue = async () => {
-    await MySwal.fire({
-      title: "Chốt đơn thành công",
-      icon: "success",
-      didOpen: () => {
-          MySwal.showLoading();
-      },
-      timer: 2000,
-  });
-  window.location.href = "/pay";
+
+    if (window.location.href === 'http://localhost:3002/pay') {
+      await MySwal.fire({
+          title: "Cảm ơn quý khách đã mua hàng!",
+          icon: "success",
+          didOpen: () => {
+              MySwal.showLoading();
+          },
+          timer: 2000,
+      });
+      window.location.href = `http://localhost:3002/information/order-history`;
+    } else if (localStorage.getItem('diaChiGiaoHang') === '') {
+      await MySwal.fire({
+          title: "Vui lòng chọn địa chỉ giao hàng!",
+          icon: "error",
+          didOpen: () => {
+              MySwal.showLoading();
+          },
+          timer: 2000,
+      });
+    } else {
+      localStorage.setItem('maKhuyenMai', 'MKM-000001')
+      await MySwal.fire({
+          title: "Chốt đơn thành công",
+          icon: "success",
+          didOpen: () => {
+              MySwal.showLoading();
+          },
+          timer: 2000,
+      });
+      window.location.href = `${config.routes.pay}`;
+    }
   }
 
   return (
@@ -46,7 +69,7 @@ function Bill() {
         <p>{total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}đ</p> 
       </div>
 
-      <Button className={cx('btn-continue')} to={config.routes.pay} onClick={handleBtnContinue}>Tiếp tục</Button>
+      <Button className={cx('btn-continue')} onClick={handleBtnContinue}>Tiếp tục</Button>
     </div>
   )
 }

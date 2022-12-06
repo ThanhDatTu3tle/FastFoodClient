@@ -28,6 +28,7 @@ import Drink from '../pages/OrderNow/Drink/Drink';
 
 import Checkout from '../pages/Checkout/Checkout';
 import Pay from '../pages/Pay/Pay';
+import Bill from '../pages/Bill/Bill';
 
 const publicRoutes = [
   { path: config.routes.home, component: Home, layout: MainLayout },
