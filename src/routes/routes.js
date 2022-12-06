@@ -43,6 +43,7 @@ const publicRoutes = [
   { path: config.routes.information, component: Information, layout: MainLayout },
   { path: config.routes.shippingaddress, component: ShippingAddress, layout: MainLayout },
   { path: config.routes.orderhistory, component: OrderHistory, layout: MainLayout },
+  { path: config.routes.orderdetail, component: OrderHistory, layout: MainLayout },
   { path: config.routes.wishlist, component: WishList, layout: MainLayout },
 
   { path: config.routes.chicken, component: Chicken, layout: MainLayout },

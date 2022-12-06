@@ -13,6 +13,7 @@ const routes = {
   information: '/information',
   shippingaddress: '/information/shipping-address',
   orderhistory: '/information/order-history',
+  orderdetail: '/information/order-history/orderdetail',
   wishlist: '/information/wish-list',
 
   chicken: '/ordernow/chicken',
