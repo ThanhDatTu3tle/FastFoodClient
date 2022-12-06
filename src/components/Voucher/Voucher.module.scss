@@ -1,0 +1,25 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 160px;
+  height: 200px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 1px 1px 5px rgb(0 0 0 / 15%);
+}
+
+.wrapper-hover {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 160px;
+  height: 200px;
+  padding: 10px;
+  border-radius: 10px;
+  border-style: solid;
+  background-color: #fff;
+  border-color: #ff5b6a;
+  box-shadow: 1px 1px 5px rgb(0 0 0 / 15%);
+}

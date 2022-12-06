@@ -1,12 +1,17 @@
+import { useState } from 'react';
 import classNames from "classnames/bind";
 
 import styles from './Pay.module.scss';
 import Title from '../../components/Title/Title';
-import AddressCard from "../../layouts/components/AddressCard/AddressCard";
+import Image from "../../components/Image/Image";
+import AddressPayment from "../../layouts/components/AddressPayment/AddressPayment";
+import Coupon from '../../components/Coupon/Coupon';
 
 const cx = classNames.bind(styles)
 
 function Pay() {
+
+  const [status, setStatus] = useState(false)
 
   const maDiaChi = localStorage.getItem('maDiaChiGiaoHang')
   const diaChi = localStorage.getItem('diaChiGiaoHang')
@@ -31,23 +36,70 @@ function Pay() {
     }
   }
 
+  const handleClickCash = () => {
+    if (status === false) {
+      setStatus(status)
+    } else {
+      setStatus(!status)
+    }
+  }
+  
+  const handleClickCard = () => {
+    if (status === true) {
+      setStatus(status)
+    } else {
+      setStatus(!status)
+    }
+  }
+
   return (
     <div className={cx('wrapper')}>
       <div className={cx('left-container')}>
         <Title content={'LỰA CHỌN PHƯƠNG THỨC THANH TOÁN'}/>
 
         <div className={cx('payment-method')}>
-          <div>TIỀN MẶT</div>
-          <div>THẺ NGÂN HÀNG</div>
+          { status === false
+            ?
+              <>
+                <div className={cx('payment-cash')} onClick={handleClickCash}>
+                  <h5>TIỀN MẶT</h5>
+                  <Image className={cx('cash-image')} src={'https://cdn-icons-png.flaticon.com/512/2489/2489756.png'}></Image>
+                </div>
+              </>
+            :
+              <>
+                <div className={cx('payment-cash-unhover')} onClick={handleClickCash}>
+                  <h5>TIỀN MẶT</h5>
+                  <Image className={cx('cash-image')} src={'https://cdn-icons-png.flaticon.com/512/2489/2489756.png'}></Image>
+                </div>
+              </>
+          }
+
+          { status === true
+            ?
+              <>
+                <div className={cx('payment-card')} onClick={handleClickCard}>
+                  <h5>THẺ NGÂN HÀNG</h5>
+                  <Image className={cx('cash-image')} src={'https://icons-for-free.com/iconfiles/png/512/credit+card+debit+card+master+card+icon-1320184902602310693.png'}></Image>
+                </div>
+              </>
+            :
+              <>
+                <div className={cx('payment-card-unhover')} onClick={handleClickCard}>
+                  <h5>THẺ NGÂN HÀNG</h5>
+                  <Image className={cx('cash-image')} src={'https://icons-for-free.com/iconfiles/png/512/credit+card+debit+card+master+card+icon-1320184902602310693.png'}></Image>
+                </div>
+              </>
+          }
         </div>
 
         <div className={cx('voucher')}> 
-
+          <Coupon></Coupon>
         </div>
       </div>
 
       <div className={cx('right-container')}>
-        <AddressCard content={content}/>
+        <AddressPayment content={content}/>
       </div>
     </div>
   )

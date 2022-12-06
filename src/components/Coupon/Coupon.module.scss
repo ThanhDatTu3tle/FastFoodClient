@@ -1,0 +1,22 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding: 20px;
+  height: fit-content;
+  justify-content: flex-start;
+  background-color: #fff;
+  box-shadow: 1px 1px 5px rgb(0 0 0 / 15%);
+
+  .left-container {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+  }
+
+  .right-container {
+    display: flex;
+    flex-direction: row;
+    width: 70%;
+  }
+}
