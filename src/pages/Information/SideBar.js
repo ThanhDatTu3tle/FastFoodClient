@@ -24,6 +24,8 @@ function SideBar() {
     localStorage.removeItem('matKhau')
     localStorage.removeItem('tenDiaChi')
     localStorage.removeItem('diaChi')
+    localStorage.removeItem('gioDat')
+    localStorage.removeItem('ngayDat')
 
     await MySwal.fire({
       title: "Đăng xuất thành công",

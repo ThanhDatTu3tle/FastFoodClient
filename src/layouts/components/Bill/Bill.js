@@ -1,6 +1,8 @@
+import { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import Swal from 'sweetalert2';
 import withReactContent from "sweetalert2-react-content";
+import axios from 'axios';
 
 import styles from './Bill.module.scss';
 import Title from '../../../components/Title/Title';
@@ -9,15 +11,93 @@ import config from '../../../config';
 
 const cx = classNames.bind(styles)
 
-function Bill() {
+function Bill({ data }) {
 
   const total = localStorage.getItem('total')
+  const email = localStorage.getItem('email')
+  const maDiaChi = localStorage.getItem('maDiaChiGiaoHang')
+  const gioDat = localStorage.getItem('gioDat')
+  const ngayDat = localStorage.getItem('ngayDat')
+  const maChiTietDonHang = localStorage.getItem('maChiTietDonHang')
+
+  const prefix = maChiTietDonHang.slice(0, 6)
+  const suffix = maChiTietDonHang.slice(6, 10)
+  const arrSuffix = suffix.split('')
+  const lastArrSuffix = arrSuffix[3]
+
+  const [orderState, setOrderState] = useState(false)
 
   const MySwal = withReactContent(Swal);
+
+  const [orders, setOrders] = useState([])
+  useEffect(() => {
+      fetch('http://localhost:3001/order')
+          .then((response) => response.json())
+          .then((data) => {
+            setOrders(data)
+          });
+  }, [])
 
   const handleBtnContinue = async () => {
 
     if (window.location.href === 'http://localhost:3002/pay') {
+
+      if (arrSuffix[2] === '0' && arrSuffix[3] !== '9') {
+        const arraySuffix = suffix.split('')
+        arraySuffix[3] = +arraySuffix[3] + 1
+        const newSuffix = arraySuffix.toString().split(',').join('')
+        const arrPrefix = prefix.split('')
+        const arrNewSuffix = newSuffix.split('')
+        const arrResult = arrPrefix.concat(arrNewSuffix).toString().split(',').join('')
+
+        localStorage.setItem('maChiTietDonHang', arrResult)
+
+      } else if (arrSuffix[2] === '0' && arrSuffix[3] === '9') {
+        arrSuffix[3] = '0'
+        const newSuffix = suffix.replace(lastArrSuffix, arrSuffix[3])
+        const arrNewSuffix = newSuffix.split('')
+        arrNewSuffix[2] = '1'
+        const newwSuffix = arrNewSuffix.toString().split(',').join('')
+
+        const arrPrefix = prefix.split('')
+        const arrNewwSuffix = newwSuffix.split('')
+        const arrResult = arrPrefix.concat(arrNewwSuffix).toString().split(',').join('')
+
+          localStorage.setItem('maChiTietDonHang', arrResult)
+      } else if (arrSuffix[2] === '1' && arrSuffix[3] !== '9') {
+        const arraySuffix = suffix.split('')
+        arraySuffix[3] = +arraySuffix[3] + 1
+        const newSuffix = arraySuffix.toString().split(',').join('')
+        const arrPrefix = prefix.split('')
+        const arrNewSuffix = newSuffix.split('')
+        const arrResult = arrPrefix.concat(arrNewSuffix).toString().split(',').join('')
+
+        localStorage.setItem('maChiTietDonHang', arrResult)
+      }
+
+      const newCodeOrder = localStorage.getItem('maChiTietDonHang')
+      localStorage.setItem('maChiTietDonHang', newCodeOrder)
+
+      await axios.post(`http://localhost:3001/order`, {
+          maChiTietDonHang: newCodeOrder, 
+          email: email,
+          maDiaChi: maDiaChi,
+          gioDat: gioDat,
+          ngayDat: ngayDat,
+          thanhTien: +total,
+          maGiamGia: '',
+          trangThai: '',
+      })
+      .then(function (response) {
+        if(response.status === 200) {
+            const arrOrders = response.data
+            return arrOrders
+        }
+      })
+      .catch(function (error) {
+          console.log(error);
+      })
+      
       await MySwal.fire({
           title: "Cảm ơn quý khách đã mua hàng!",
           icon: "success",
@@ -37,7 +117,14 @@ function Bill() {
           timer: 2000,
       });
     } else {
+      const date = new Date()
+      let gioDat = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+      let ngayDat = date.getDate()+'-'+(date.getMonth()+1)+'-'+date.getFullYear();
+
       localStorage.setItem('maKhuyenMai', 'MKM-000001')
+      localStorage.setItem('maChiTietDonHang', 'MCTDH-0001')
+      localStorage.setItem('gioDat', gioDat)
+      localStorage.setItem('ngayDat', ngayDat)
       await MySwal.fire({
           title: "Chốt đơn thành công",
           icon: "success",

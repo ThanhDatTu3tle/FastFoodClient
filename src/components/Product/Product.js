@@ -3,12 +3,12 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import Swal from 'sweetalert2';
 import withReactContent from "sweetalert2-react-content";
+import axios from 'axios';
 import classNames from 'classnames/bind';
 
 import styles from './Product.module.scss';
 import Button from '../Button/Button';
 import Image from '../Image/Image';
-import axios from 'axios';
 
 const cx = classNames.bind(styles)
 
@@ -83,7 +83,7 @@ function Product({ data }) {
             })
             .then(function (response) {
 
-                if( response.status === 200) {
+                if(response.status === 200) {
                     const arrFavoriteProducts = response.data
                     return arrFavoriteProducts
                 }

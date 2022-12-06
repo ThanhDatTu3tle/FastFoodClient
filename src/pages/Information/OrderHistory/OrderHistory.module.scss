@@ -33,4 +33,29 @@
     background-color: #ff5b6a;
     margin-bottom: 30px;
   }
+
+  .titles {
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    margin-bottom: 10px;
+
+    .id-order {
+      width: 20%;
+    }
+
+    .address {
+      width: 40%;
+    }
+
+    .time {
+      display: flex;
+      flex-direction: column;
+      width: 20%;
+    }
+
+    .price {
+      width: 20%;
+    }
+  }
 }
