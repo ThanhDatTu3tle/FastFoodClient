@@ -59,6 +59,7 @@ function Cart({ onClick }) {
       timer: 2000,
     });
     localStorage.setItem('total', total)
+    localStorage.setItem('maChiTietDonHang', '')
   }
 
   return (
