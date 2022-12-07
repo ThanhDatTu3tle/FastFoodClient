@@ -41,6 +41,7 @@ function AddressCard({ content }) {
     if (status === true) {
       setStatus(false)
       localStorage.setItem('diaChiGiaoHang', '')
+      localStorage.setItem('tenDiaChiGiaoHang', '')
     }
   }
 

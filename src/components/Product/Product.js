@@ -87,7 +87,6 @@ function Product({ data }) {
                     const arrFavoriteProducts = response.data
                     return arrFavoriteProducts
                 }
-
             })
             .catch(function (error) {
                 console.log(error);
@@ -135,7 +134,7 @@ function Product({ data }) {
                 giaTien: data.giaTien,
                 count,
             }
-            await setCount(count + 1)
+            setCount(count + 1)
             await localStorage.setItem(`gioHang${data.maMonAn}`, JSON.stringify(productInCart))
             await MySwal.fire({
                 title: "Thêm thành công vào giỏ hàng!",
@@ -145,6 +144,9 @@ function Product({ data }) {
                 },
                 timer: 1000,
             });
+            if (window.location.href === 'http://localhost:3002/checkout') {
+                window.location.reload()
+            }
         }
     };
     

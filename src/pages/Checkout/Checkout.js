@@ -61,6 +61,18 @@ function Checkout() {
     }
   })
 
+  const prices = productsInCart.map(item => {
+    if (item !== null) {
+      return item.giaTien*item.count
+    }
+  })
+  
+  const total = prices.reduce((x, y) => {
+    return x + y
+  }, 0)
+
+  localStorage.setItem('total', total)
+
   return (
     <div className={cx('wrapper')}>
 

@@ -10,7 +10,6 @@ const cx = classNames.bind(styles)
 function OrderInfo() {
 
   const [products, setProducts] = useState([])
-  const voucher = localStorage.getItem('gioHangMKN-000001')
 
   const ids = products.map(product => { // lấy ra mảng các id từ products => dùng tính counts
     return product.maMonAn;
@@ -59,7 +58,7 @@ function OrderInfo() {
         ))
       }
       {/* <ProductPayment data={voucher}/> */}
-      <Bill />
+      <Bill data={products}/>
     </div>
   )
 }

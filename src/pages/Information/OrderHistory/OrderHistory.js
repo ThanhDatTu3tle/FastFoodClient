@@ -20,7 +20,6 @@ function OrderHistory() {
   const ngayDat = localStorage.getItem('ngayDat')
   const gioDat = localStorage.getItem('gioDat')
   const diaChi = localStorage.getItem('diaChiGiaoHang')
-  const total = localStorage.getItem('total')
 
   const [products, setProducts] = useState([])
   const [orders, setOrders] = useState([])
@@ -188,7 +187,9 @@ function OrderHistory() {
                     </div>
 
                     <div className={cx('product-total')}>
-                      {total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}đ
+                      {orders.map(x => (
+                        x.thanhTien.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + 'đ'
+                      ))}
                     </div>
                   </div> 
                   <br />
@@ -210,10 +211,18 @@ function OrderHistory() {
                       </div>
 
                       <div className={cx('info')}>
-                        <p>{total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}đ</p>
+                        <p>
+                        {orders.map(x => (
+                          x.thanhTien.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + 'đ'
+                        ))}
+                        </p>
                         <p>Free delivery</p>
                         <p>0đ</p>
-                        <p>{total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}đ</p>
+                        <p>
+                        {orders.map(x => (
+                          x.thanhTien.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + 'đ'
+                        ))}
+                        </p>
                       </div>
                     </div>
 

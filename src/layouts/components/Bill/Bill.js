@@ -18,14 +18,12 @@ function Bill({ data }) {
   const maDiaChi = localStorage.getItem('maDiaChiGiaoHang')
   const gioDat = localStorage.getItem('gioDat')
   const ngayDat = localStorage.getItem('ngayDat')
-  const maChiTietDonHang = localStorage.getItem('maChiTietDonHang')
+  const maChiTietDonHang = localStorage.getItem('maChiTietDonHangCuoi')
 
   const prefix = maChiTietDonHang.slice(0, 6)
   const suffix = maChiTietDonHang.slice(6, 10)
   const arrSuffix = suffix.split('')
   const lastArrSuffix = arrSuffix[3]
-
-  const [orderState, setOrderState] = useState(false)
 
   const MySwal = withReactContent(Swal);
 
@@ -107,6 +105,48 @@ function Bill({ data }) {
           timer: 2000,
       });
       window.location.href = `http://localhost:3002/information/order-history`;
+      if (window.location.href === 'http://localhost:3002/pay') {
+        localStorage.setItem('maDiaChiGiaoHang' ,'')
+        localStorage.setItem('diaChiGiaoHang', '')
+        localStorage.setItem('tenDiaChiGiaoHang', '')
+        localStorage.setItem('maChiTietDonHang', '')
+        localStorage.removeItem('total')
+        localStorage.removeItem('gioDat')
+        localStorage.removeItem('ngayDat')
+        
+        const ids = data.map(product => { // lấy ra mảng các id từ products => dùng tính counts
+          return product.maMonAn;
+        })
+        const counts = ids.map(id => { // lấy ra mảng các thông tin products đc add to cart
+          if (id !== null) {
+            return JSON.parse(localStorage.getItem(`gioHang${id}`))
+          }
+        })
+        const productsInCart = [
+          {
+            "maMonAn": "MMA-030001",
+            "tenMonAn": "Shake Potato",
+            "hinhAnhMonAn": "https://dscnnwjxnwl3f.cloudfront.net/media/catalog/product/d/e/dessert-534x374px_shake-potato.png",
+            "moTaChiTiet": "Ngon dữ vậy trời!!!",
+            "giaTien": 0,
+            "yeuThich": false,
+            "maDanhMuc": {
+              "maDanhMuc": "MDM04",
+              "tenDanhMuc": "Dessert",
+              "hinhAnh": "https://www.lotteria.vn/media/catalog/tmp/category/BG-Menu-09_2.jpg"
+            }
+          },
+        ]
+        counts.map(count => {
+          if (count !== null) {
+            productsInCart.push(count)
+          }
+        })
+
+        productsInCart.map((x) => (
+          localStorage.removeItem(`gioHang${x.maMonAn}`)
+        ))
+      }
     } else if (localStorage.getItem('diaChiGiaoHang') === '') {
       await MySwal.fire({
           title: "Vui lòng chọn địa chỉ giao hàng!",
@@ -122,7 +162,7 @@ function Bill({ data }) {
       let ngayDat = date.getDate()+'-'+(date.getMonth()+1)+'-'+date.getFullYear();
 
       localStorage.setItem('maKhuyenMai', 'MKM-000001')
-      localStorage.setItem('maChiTietDonHang', 'MCTDH-0001')
+      localStorage.setItem('maChiTietDonHang', 'MCTDH-0000')
       localStorage.setItem('gioDat', gioDat)
       localStorage.setItem('ngayDat', ngayDat)
       await MySwal.fire({

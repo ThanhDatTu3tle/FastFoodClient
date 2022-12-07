@@ -14,13 +14,22 @@ const cx = classNames.bind(styles)
 function Cart({ onClick }) {
 
   const [products, setProducts] = useState([])
+  const [order, setOrder] = useState([])
 
   useEffect(() => {
-      fetch('http://localhost:3001/products')
-          .then((response) => response.json())
-          .then((data) => {
-              setProducts(data)
-          });
+    fetch('http://localhost:3001/products')
+      .then((response) => response.json())
+      .then((data) => {
+        setProducts(data)
+      });
+  }, [])
+
+  useEffect(() => {
+    fetch('http://localhost:3001/order')
+      .then((response) => response.json())
+      .then((data) => {
+        setOrder(data)
+      });
   }, [])
 
   const ids = products.map(product => { // lấy ra mảng các id từ products => dùng tính counts
@@ -54,12 +63,12 @@ function Cart({ onClick }) {
     await MySwal.fire({
       title: "Vui lòng đợi trong giây lát!",
       didOpen: () => {
-          MySwal.showLoading();
+        MySwal.showLoading();
       },
       timer: 2000,
     });
     localStorage.setItem('total', total)
-    localStorage.setItem('maChiTietDonHang', '')
+    localStorage.setItem('maChiTietDonHangCuoi', [...order].pop().maChiTietDonHang)
   }
 
   return (
@@ -71,17 +80,17 @@ function Cart({ onClick }) {
       <div className={cx('line')}></div>
       {productsInCart 
         ? 
-        <>
-          {
-            productsInCart.map((data) => (
-              <ProductCard key={data.maMonAn} data={data}/>
-            ))
-          }
-        </>
+          <>
+            {
+              productsInCart.map((data) => (
+                <ProductCard key={data.maMonAn} data={data}/>
+              ))
+            }
+          </>
         :
-        <>
-          <p>Bạn chưa thêm món nào vào giỏ cả!!</p>
-        </>
+          <>
+            <p>Bạn chưa thêm món nào vào giỏ cả!!</p>
+          </>
       } 
       <div className={cx('line')}></div>
       <div className={cx('total')}>
