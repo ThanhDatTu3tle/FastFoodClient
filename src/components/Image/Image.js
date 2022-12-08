@@ -13,7 +13,7 @@ const Image = forwardRef(({ onClick, children, src, fallback: customFallback = '
   }
 
   const editImage = () => {
-    console.log('Ngu')
+    // console.log('Ngu')
   }
 
   return (

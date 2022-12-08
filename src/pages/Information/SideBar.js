@@ -24,9 +24,13 @@ function SideBar() {
     localStorage.removeItem('matKhau')
     localStorage.removeItem('tenDiaChi')
     localStorage.removeItem('diaChi')
+    localStorage.removeItem('diaChiGiaoHang')
     localStorage.removeItem('gioDat')
     localStorage.removeItem('ngayDat')
-    // localStorage.removeItem('tenDiaChiGiaoHang')
+    localStorage.removeItem('thanhTien')
+    localStorage.removeItem('maChiTietDonHang')
+    localStorage.removeItem('maDiaChiGiaoHang')
+    localStorage.removeItem('tenDiaChiGiaoHang')
     localStorage.removeItem('numberOfProductsInCart')
     
 

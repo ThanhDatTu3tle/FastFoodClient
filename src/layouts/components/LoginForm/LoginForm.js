@@ -102,6 +102,7 @@ function LoginForm({ to, onClick, children, ...props }) {
                         localStorage.setItem('maDiaChiGiaoHang' ,'')
                         localStorage.setItem('diaChiGiaoHang', '')
                         localStorage.setItem('tenDiaChiGiaoHang', '')
+                        localStorage.setItem('maChiTietDonHangCuoi', 'MCTDH-0001')
                         
                         await MySwal.fire({
                             title: "Đăng nhập thành công",

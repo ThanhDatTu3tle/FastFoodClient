@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
+import Swal from 'sweetalert2';
+import withReactContent from "sweetalert2-react-content";
 
 import styles from './OrderHistory.module.scss';
+import config from '../../../config';
 import SideBar from '../SideBar';
 import OrderHis from '../../../components/OrderHistory/OrderHis';
 import Image from '../../../components/Image/Image';
@@ -12,14 +15,18 @@ const cx = classNames.bind(styles)
 
 function OrderHistory() {
 
+  const MySwal = withReactContent(Swal);
+
   const email = localStorage.getItem('email')
   const emailResult = email.replace('@', '%40')
+
   const hoTen = localStorage.getItem('hoTen')
   const soDienThoai = localStorage.getItem('soDienThoai')
   const maDatHang = localStorage.getItem('maChiTietDonHang')
   const ngayDat = localStorage.getItem('ngayDat')
   const gioDat = localStorage.getItem('gioDat')
   const diaChi = localStorage.getItem('diaChiGiaoHang')
+  const thanhTien = localStorage.getItem('thanhTien')
 
   const [products, setProducts] = useState([])
   const [orders, setOrders] = useState([])
@@ -61,6 +68,15 @@ function OrderHistory() {
           });
   }, [])
 
+  orders.map((x) => {
+    if (x.maChiTietDonHang === maDatHang) {
+      localStorage.setItem('gioDat', x.gioDat)
+      localStorage.setItem('ngayDat', x.ngayDat)
+      localStorage.setItem('diaChiGiaoHang', x.maDiaChi.diaChi)
+      localStorage.setItem('thanhTien', x.thanhTien)
+    }
+  })
+
   useEffect(() => {
     fetch('http://localhost:3001/products')
         .then((response) => response.json())
@@ -71,6 +87,11 @@ function OrderHistory() {
 }, [])
 
   const handleBackToMyOrder = () => {
+    localStorage.setItem('gioDat', '')
+    localStorage.setItem('ngayDat', '')
+    localStorage.setItem('diaChiGiaoHang', '')
+    localStorage.setItem('thanhTien', '')
+
     window.location.href = 'http://localhost:3002/information/order-history'
   }
 
@@ -187,9 +208,7 @@ function OrderHistory() {
                     </div>
 
                     <div className={cx('product-total')}>
-                      {orders.map(x => (
-                        x.thanhTien.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + 'đ'
-                      ))}
+                      <p>{thanhTien.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + 'đ'}</p>
                     </div>
                   </div> 
                   <br />
@@ -211,18 +230,10 @@ function OrderHistory() {
                       </div>
 
                       <div className={cx('info')}>
-                        <p>
-                        {orders.map(x => (
-                          x.thanhTien.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + 'đ'
-                        ))}
-                        </p>
+                        <p>{thanhTien.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + 'đ'}</p>
                         <p>Free delivery</p>
                         <p>0đ</p>
-                        <p>
-                        {orders.map(x => (
-                          x.thanhTien.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + 'đ'
-                        ))}
-                        </p>
+                        <p>{thanhTien.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + 'đ'}</p>
                       </div>
                     </div>
 
