@@ -9,6 +9,7 @@ import Options from '../../../layouts/components/Header/Options';
 import styles from './Products.module.scss';
 import Button from '../../../components/Button';
 import LoginForm from '../../../layouts/components/LoginForm/LoginForm';
+import AddProduct from '../../../layouts/components/AddProduct/AddProduct';
 
 const cx = classNames.bind(styles)
 
@@ -61,7 +62,7 @@ function Products() {
                   sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
                   open={open}
                 >
-                  <LoginForm data={products} onClick={() => {
+                  <AddProduct data={products} onClick={() => {
                       setOpen(false)
                   }} />
                 </Backdrop>
@@ -71,6 +72,18 @@ function Products() {
             
             <div className={cx('products')}>
               {productsArr_1.map((data) => (
+                <ProductAdmin key={data.maMonAn} data={data}/>
+              ))} 
+            </div>
+
+            <div className={cx('products')}>
+              {productsArr_2.map((data) => (
+                <ProductAdmin key={data.maMonAn} data={data}/>
+              ))} 
+            </div>
+
+            <div className={cx('products')}>
+              {productsArr_3.map((data) => (
                 <ProductAdmin key={data.maMonAn} data={data}/>
               ))} 
             </div>
