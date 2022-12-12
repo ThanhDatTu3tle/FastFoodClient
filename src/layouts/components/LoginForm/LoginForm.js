@@ -137,13 +137,14 @@ function LoginForm({ to, onClick, children, ...props }) {
                         // window.location.href = "/home";
                     } else if (phoneNumber === '1234567890' && password === '123456') {
                         await MySwal.fire({
-                            title: "Đăng nhập thành công",
+                            title: "Xin chào chủ tịch!!!",
                             icon: "success",
                             didOpen: () => {
                                 MySwal.showLoading();
                             },
                             timer: 2000,
                         });
+                        localStorage.setItem('maMonAnCuoi', '')
                         window.location.href = "/admin";
                     }
                     // return user;
