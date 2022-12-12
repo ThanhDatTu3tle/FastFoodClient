@@ -9,6 +9,7 @@ const routes = {
   admin: '/admin',
   users: '/admin/users',
   products: '/admin/products',
+  category: '/admin/category',
 
   information: '/information',
   shippingaddress: '/information/shipping-address',

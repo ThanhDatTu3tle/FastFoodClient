@@ -72,6 +72,8 @@ function AddProduct({ onClick }) {
         })
     }
 
+    const MySwal = withReactContent(Swal);
+
     const handleSubmitButton = (e) => {
 
         const prefix = localStorage.getItem('prefix')
@@ -134,15 +136,26 @@ function AddProduct({ onClick }) {
           giaTien: +data.giaTien,
           yeuThich: data.yeuThich,
         })
-        .then(function (response) {
+        .then(async function (response) {
 
-          if(response.status === 201) {
-            const arrFavoriteProducts = response.data
-            return arrFavoriteProducts
-          }
+            if(response.status === 201) {
+                const arrFavoriteProducts = response.data
+
+                await MySwal.fire({
+                    title: "Thêm thành công",
+                    icon: "success",
+                    didOpen: () => {
+                        MySwal.showLoading();
+                    },
+                    timer: 2000,
+                });
+                window.location.href = "/admin/products";
+
+                return arrFavoriteProducts
+            }
         })
         .catch(function (error) {
-          console.log(error);
+            console.log(error);
         })
     }
 
@@ -153,7 +166,7 @@ function AddProduct({ onClick }) {
     return (
         <div className={cx('wrapper')}>
         <div className={cx('container-main')}>
-            <h4>Vui lòng nhập địa chỉ của bạn (địa chỉ này sẽ được dùng làm địa chỉ giao hàng).</h4>
+            <h4>Vui lòng nhập thông tin để tạo món mới.</h4>
             <div className={cx('form')}>
                 <form id='registerForm'>
                     <div className={cx("input-maDanhMuc")}>

@@ -1,16 +1,15 @@
 import { useState } from 'react';
 import Backdrop from '@mui/material/Backdrop';
-
 import classNames from 'classnames/bind';
-import styles from './ProductAdmin.module.scss';
-import Button from '../Button/Button';
+
+import styles from './CategoryAdmin.module.scss';
 import Image from '../Image/Image';
-import EditForm from '../../layouts/components/EditForm/EditForm';
+import Button from '../Button';
+import EditCategoryForm from '../../layouts/components/EditCategoryForm/EditCategoryForm';
 
 const cx = classNames.bind(styles)
 
-function ProductAdmin({ data }) {
-
+function CategoryAdmin({ data }) {
     const [open, setOpen] = useState(false)
 
     const handleToggle = () => {
@@ -24,24 +23,23 @@ function ProductAdmin({ data }) {
     
     return (
         <div className={cx('wrapper')}>
-            <Image className={cx('product-image')} src={data.hinhAnhMonAn}></Image>
+            <Image className={cx('category-image')} src={data.hinhAnh}></Image>
             <div className={cx('name-favorite-container')}>
-                <div className={cx('product-name')}>{data.tenMonAn}</div>
+                <div className={cx('category-name')}>{data.tenDanhMuc}</div>
             </div>
-            <div className={cx('product-price')}>{data.giaTien.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}đ</div>  
             <Button primary small onClick={handleToggle}>
                 <Backdrop
                     sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
                     open={open}
                 >
-                    <EditForm data={data} onClick={() => {
+                    <EditCategoryForm data={data} onClick={() => {
                         setOpen(false)
                     }} />
                 </Backdrop>
-                Chỉnh sửa món
+                Chỉnh sửa danh mục
             </Button>
         </div>
     )
 }
 
-export default ProductAdmin;
+export default CategoryAdmin;

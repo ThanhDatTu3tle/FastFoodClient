@@ -2,20 +2,20 @@ import { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import Backdrop from '@mui/material/Backdrop';
 
+import styles from './Category.module.scss';
 import SideBar from '../SideBar';
 import Title from '../../../components/Title/Title';
-import ProductAdmin from '../../../components/ProductAdmin/ProductAdmin';
 import Options from '../../../layouts/components/Header/Options';
-import styles from './Products.module.scss';
 import Button from '../../../components/Button';
 import LoginForm from '../../../layouts/components/LoginForm/LoginForm';
-import AddProduct from '../../../layouts/components/AddProduct/AddProduct';
+import AddCategory from '../../../layouts/components/AddCategory/AddCategory';
+import CategoryAdmin from '../../../components/CategoryAdmin/CategoryAdmin';
 
 const cx = classNames.bind(styles)
 
-function Products() {
+function Category() {
 
-  const [products, setProducts] = useState([])
+  const [category, setCategory] = useState([])
   const [open, setOpen] = useState(false)
 
     const handleToggle = () => {
@@ -28,21 +28,15 @@ function Products() {
     };
 
   useEffect(() => {
-      fetch('http://localhost:3001/products')
+      fetch('http://localhost:3001/category')
           .then((response) => response.json())
           .then((data) => {
-              setProducts(data)
+              setCategory(data)
           });
   }, [])
 
-  const productsArr_1 = products.slice(0, 4)
-  // console.log('1: ', productsArr_1)
-  const productsArr_2 = products.slice(4, 8)
-  // console.log('2: ', productsArr_2)
-  const productsArr_3 = products.slice(8, 12)
-  // console.log('3: ', productsArr_3)
-  const productsArr_4 = products.slice(12, 16)
-  // console.log('4: ', productsArr_4)
+  const categoryArr_1 = category.slice(0, 4)
+  const categoryArr_2 = category.slice(4, 8)
 
   return (
     <div className={cx('wrapper')}>
@@ -58,47 +52,31 @@ function Products() {
           
           <div className={cx('container-products')}>
             <div className={cx('container-header')}>
-              <Title content={'DANH SÁCH MÓN ĂN'}/>
+              <Title content={'DANH MỤC MÓN ĂN'}/>
               <Button small onClick={handleToggle}>
                 <Backdrop
                   sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
                   open={open}
                 >
-                  <AddProduct data={products} onClick={() => {
+                  <AddCategory data={category} onClick={() => {
                       setOpen(false)
                   }} />
                 </Backdrop>
-                Thêm món
+                Thêm danh mục
               </Button>
             </div>
             
             <div className={cx('products')}>
-              {productsArr_1.map((data) => (
-                <ProductAdmin key={data.maMonAn} data={data}/>
+              {categoryArr_1.map((data) => (
+                <CategoryAdmin key={data.maDanhMuc} data={data}/>
               ))} 
             </div>
 
             <div className={cx('products')}>
-              {productsArr_2.map((data) => (
-                <ProductAdmin key={data.maMonAn} data={data}/>
+              {categoryArr_2.map((data) => (
+                <CategoryAdmin key={data.maDanhMuc} data={data}/>
               ))} 
             </div>
-
-            <div className={cx('products')}>
-              {productsArr_3.map((data) => (
-                <ProductAdmin key={data.maMonAn} data={data}/>
-              ))} 
-            </div>
-
-            <div className={cx('products')}>
-              {productsArr_4.map((data) => (
-                <ProductAdmin key={data.maMonAn} data={data}/>
-              ))} 
-            </div>
-          </div>
-
-          <div className={cx('filter-products')}>
-            Use tags to filter your search
           </div>
         </div>
       </div>
@@ -106,4 +84,4 @@ function Products() {
   )
 }
 
-export default Products;
+export default Category;

@@ -14,6 +14,7 @@ import RegisterForm from '../pages/RegisterForm/RegisterForm';
 import Admin from '../pages/Admin/Admin';
 import Users from '../pages/Admin/Users/Users';
 import Products from '../pages/Admin/Products/Products';
+import Category from '../pages/Admin/Category/Category';
 
 import Information from '../pages/Information/Information';
 import ShippingAddress from '../pages/Information/ShippingAddress';
@@ -39,6 +40,7 @@ const publicRoutes = [
   { path: config.routes.admin, component: Admin, layout: null },
   { path: config.routes.users, component: Users, layout: null },
   { path: config.routes.products, component: Products, layout: null },
+  { path: config.routes.category, component: Category, layout: null },
 
   { path: config.routes.information, component: Information, layout: MainLayout },
   { path: config.routes.shippingaddress, component: ShippingAddress, layout: MainLayout },

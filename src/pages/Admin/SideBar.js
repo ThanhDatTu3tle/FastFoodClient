@@ -27,7 +27,7 @@ function SideBar() {
           <FastfoodIcon sx={{ marginRight: '5px' }}/>
           Món ăn
         </Button>
-        <Button primary className={cx('btn')} to={config.routes.products}>
+        <Button primary className={cx('btn')} to={config.routes.category}>
           <CategoryIcon sx={{ marginRight: '5px' }}/>
           Danh mục món ăn
         </Button>
