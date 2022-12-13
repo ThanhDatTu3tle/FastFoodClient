@@ -1,0 +1,151 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  width: 1800px;
+  height: 800px;
+  padding: 20px;
+  border-radius: 20px;
+  color: #0e0d0d;
+  background-color: antiquewhite;
+}
+
+.left-container {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  height: 400px;
+  padding: 20px;
+  background: rgb(255, 255, 255);
+  box-shadow: 0 1px 5px rgb(0 0 0 / 25%);
+  border-radius: 10px;
+
+  .avatar-name {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 80%;
+
+    .image {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      margin-bottom: 5px;
+      background-color: #ff5b6a;
+    }
+  }
+
+  .info-detail {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    height: 20%;
+  }
+}
+
+.right-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 70%;
+
+  .orders {
+    display: flex;
+    flex-direction: column;
+    width: 98%;
+    height: fit-content;
+    background: rgb(255, 255, 255);
+    box-shadow: 0 1px 5px rgb(0 0 0 / 25%);
+    border-radius: 10px;
+
+    .title-order {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      .btn-back {
+        height: 50px;
+      }
+    }
+
+    .titles {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      background-color: #ff9ea2;
+      height: 50px;
+      border-radius: 10px;
+
+      .code-order {
+        width: 10%;
+      }
+
+      .active {
+        width: 10%;
+      }
+
+      .price {
+        width: 30%;
+      }
+
+      .product {
+        width: 30%;
+      }
+
+      .create {
+        width: 20%;
+      }
+    }
+  }
+
+  .address {
+    display: flex;
+    flex-direction: column;
+    width: 98%;
+    height: fit-content;
+    background: rgb(255, 255, 255);
+    box-shadow: 0 1px 5px rgb(0 0 0 / 25%);
+    border-radius: 10px;
+  }
+
+  .addresses {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin-bottom: 10px;
+    width: 100%;
+    height: fit-content;
+
+    .info-address {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      margin-left: 50px;
+      height: 80px;
+
+      .details {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+
+        .address-name {
+          display: flex;
+          align-items: center;
+          width: 100%;
+        }
+
+        .line {
+          width: 90%;
+          height: 1px;
+          background-color: #ff5b6a;
+        }
+      }
+    }
+  }
+}
