@@ -12,19 +12,15 @@ const cx = classNames.bind(styles)
 
 function EditCustomerForm({ onClick, data }) {
 
-  const [orders, setOrders] = useState([])
   const [address, setAddress] = useState([])
+  const [orders, setOrders] = useState([])
+  const [codeOrders, setCodeOrders] = useState([])
 
   const divAddress = useRef()
 
   const email = data.email.replace('@', '%40')
-  useEffect(() => {
-      fetch(`http://localhost:3001/order/${email}`)
-          .then((response) => response.json())
-          .then((data) => {
-              setOrders(data)
-          });
-  }, [email])
+  // const codeAddress = 
+
   useEffect(() => {
       fetch(`http://localhost:3001/address/${email}`)
           .then((response) => response.json())
@@ -32,6 +28,26 @@ function EditCustomerForm({ onClick, data }) {
               setAddress(data)
           });
   }, [email])
+
+  useEffect(() => {
+      fetch(`http://localhost:3001/order/${email}`)
+          .then((response) => response.json())
+          .then((data) => {
+              setCodeOrders(data[0].maChiTietDonHang)
+              // console.log(codeOrders)
+          });
+  }, [email])
+//   const codeAddress = []
+
+  useEffect(() => {
+    fetch(`http://localhost:3001/order/${email}`)
+        .then((response) => response.json())
+        .then((data) => {
+            setOrders(data)
+            console.log(orders)
+        });
+}, [email])
+
 
   const handleBack = () => {
     window.location.reload()
