@@ -1,61 +1,62 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 import classNames from "classnames/bind";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
 import ProductCard from "./ProductCard";
-import styles from './Cart.module.scss';
-import Title from '../../../components/Title/Title';
+import styles from "./Cart.module.scss";
+import Title from "../../../components/Title/Title";
 import Button from "../../../components/Button/Button";
-import config from '../../../config';
+import config from "../../../config";
 
-const cx = classNames.bind(styles)
+const cx = classNames.bind(styles);
 
 function Cart({ onClick }) {
-
-  const [products, setProducts] = useState([])
-  const [order, setOrder] = useState([])
-
-  useEffect(() => {
-    fetch('http://localhost:3001/products')
-      .then((response) => response.json())
-      .then((data) => {
-        setProducts(data)
-      });
-  }, [])
+  const [products, setProducts] = useState([]);
+  const [order, setOrder] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3001/order')
+    fetch(`${process.env.REACT_APP_BASE_URL}products`)
       .then((response) => response.json())
       .then((data) => {
-        setOrder(data)
+        setProducts(data);
       });
-  }, [])
+  }, []);
 
-  const ids = products.map(product => { // lấy ra mảng các id từ products => dùng tính counts
+  useEffect(() => {
+    fetch(`${process.env.REACT_APP_BASE_URL}order`)
+      .then((response) => response.json())
+      .then((data) => {
+        setOrder(data);
+      });
+  }, []);
+
+  const ids = products.map((product) => {
+    // lấy ra mảng các id từ products => dùng tính counts
     return product.maMonAn;
-  })
-  const counts = ids.map(id => { // lấy ra mảng các thông tin products đc add to cart
+  });
+  const counts = ids.map((id) => {
+    // lấy ra mảng các thông tin products đc add to cart
     if (id !== null) {
-      return JSON.parse(localStorage.getItem(`gioHang${id}`))
+      return JSON.parse(localStorage.getItem(`gioHang${id}`));
     }
-  })
-  const productsInCart = []
-  counts.map(count => {
+  });
+  const productsInCart = [];
+  counts.map((count) => {
     if (count !== null) {
-      productsInCart.push(count)
+      productsInCart.push(count);
     }
-  })
-  localStorage.setItem('numberOfProductsInCart', productsInCart.length)
-  const prices = productsInCart.map(item => {
+  });
+  localStorage.setItem("numberOfProductsInCart", productsInCart.length);
+  const prices = productsInCart.map((item) => {
     if (item !== null) {
-      return item.giaTien*item.count
+      return item.giaTien * item.count;
     }
-  })
-  
+  });
+
   const total = prices.reduce((x, y) => {
-    return x + y
-  }, 0)
+    return x + y;
+  }, 0);
 
   const MySwal = withReactContent(Swal);
 
@@ -67,39 +68,47 @@ function Cart({ onClick }) {
       },
       timer: 2000,
     });
-    localStorage.setItem('total', total)
-    localStorage.setItem('maChiTietDonHangCuoi', [...order].pop().maChiTietDonHang)
-  }
+    localStorage.setItem("total", total);
+    localStorage.setItem(
+      "maChiTietDonHangCuoi",
+      [...order].pop().maChiTietDonHang
+    );
+  };
 
   return (
-    <div className={cx('wrapper')}>
-      <div className={cx('header')}>
-        <Title content={'Giỏ hàng của bạn:'}/>
-        <Button small onClick={onClick}>Thoát</Button>
+    <div className={cx("wrapper")}>
+      <div className={cx("header")}>
+        <Title content={"Giỏ hàng của bạn:"} />
+        <Button small onClick={onClick}>
+          Thoát
+        </Button>
       </div>
-      <div className={cx('line')}></div>
-      {productsInCart 
-        ? 
-          <>
-            {
-              productsInCart.map((data) => (
-                <ProductCard key={data.maMonAn} data={data}/>
-              ))
-            }
-          </>
-        :
-          <>
-            <p>Bạn chưa thêm món nào vào giỏ cả!!</p>
-          </>
-      } 
-      <div className={cx('line')}></div>
-      <div className={cx('total')}>
+      <div className={cx("line")}></div>
+      {productsInCart ? (
+        <>
+          {productsInCart.map((data) => (
+            <ProductCard key={data.maMonAn} data={data} />
+          ))}
+        </>
+      ) : (
+        <>
+          <p>Bạn chưa thêm món nào vào giỏ cả!!</p>
+        </>
+      )}
+      <div className={cx("line")}></div>
+      <div className={cx("total")}>
         <p>Tổng cộng:</p>
         {total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}đ
       </div>
-      <Button className={cx('btn-checkout')} to={config.routes.checkout} onClick={handleCheckOut}>Check out</Button>
+      <Button
+        className={cx("btn-checkout")}
+        to={config.routes.checkout}
+        onClick={handleCheckOut}
+      >
+        Check out
+      </Button>
     </div>
-  )
+  );
 }
 
 export default Cart;

@@ -53,6 +53,7 @@
     ]
   },
   "devDependencies": {
+    "dotenv-webpack": "^8.0.1",
     "sass": "^1.55.0"
   }
 }
